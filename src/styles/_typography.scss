@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+h1, h2, .display-font {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.text-ai {
+  color: var(--color-ai);
+}
+
+.text-stars {
+  color: var(--color-stars);
+}
+
+.text-primary-brand {
+  color: var(--color-primary);
+}
