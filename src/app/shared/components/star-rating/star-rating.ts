@@ -13,9 +13,14 @@ import { Component, input, output, signal, computed } from '@angular/core';
           class="star"
           [class.filled]="i <= displayValue()"
           [class.hovered]="interactive() && i <= hovered()"
+          [attr.role]="interactive() ? 'button' : null"
+          [attr.tabindex]="interactive() ? 0 : null"
+          [attr.aria-label]="interactive() ? i + ' estrella' + (i > 1 ? 's' : '') : null"
           (mouseenter)="interactive() && hovered.set(i)"
           (mouseleave)="interactive() && hovered.set(0)"
           (click)="interactive() && onSelect(i)"
+          (keydown.enter)="interactive() && onSelect(i)"
+          (keydown.space)="interactive() && onSelect(i)"
           >★</span
         >
       }
