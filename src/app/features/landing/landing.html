@@ -1,0 +1,292 @@
+<!-- ── NAVBAR ─────────────────────────────────────────────── -->
+<header class="l-nav">
+  <div class="container-xl px-4 d-flex align-items-center justify-content-between py-3">
+    <span class="l-brand">FitForge</span>
+    <nav class="d-none d-md-flex align-items-center gap-4">
+      <a routerLink="/workouts" class="l-nav-link">Entrenamientos</a>
+      <a routerLink="/nutrition" class="l-nav-link">Dietas</a>
+      <a routerLink="/stats"    class="l-nav-link">Estadísticas</a>
+    </nav>
+    <div class="d-flex gap-2">
+      <a routerLink="/login"    class="btn l-btn-ghost">Iniciar sesión</a>
+      <a routerLink="/register" class="btn l-btn-solid">Registrarse</a>
+    </div>
+  </div>
+</header>
+
+<!-- ── HERO ───────────────────────────────────────────────── -->
+<section class="l-hero">
+  <div class="container-xl px-4">
+    <div class="row align-items-center gy-5">
+
+      <!-- Left -->
+      <div class="col-lg-5">
+        <span class="l-pill mb-4 d-inline-block">TU COMPAÑERO DE FITNESS</span>
+        <h1 class="l-hero-title">
+          Entrena mejor,<br>
+          <span class="l-accent">progresa más</span>
+        </h1>
+        <p class="l-hero-sub">
+          Registra tus entrenamientos, sigue tu dieta y recibe recomendaciones
+          personalizadas basadas en tu rendimiento real.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a routerLink="/register" class="btn l-btn-white">Comenzar gratis</a>
+          <a routerLink="/login"    class="btn l-btn-outline-white">Ver demo</a>
+        </div>
+      </div>
+
+      <!-- Right — Dashboard mock -->
+      <div class="col-lg-7 d-flex justify-content-center justify-content-lg-end">
+        <div class="l-mock">
+
+          <!-- Top stats -->
+          <div class="l-mock-stats">
+            <div class="l-mock-stat">
+              <div class="l-mock-val">87kg</div>
+              <div class="l-mock-lbl">Peso actual</div>
+            </div>
+            <div class="l-mock-divider"></div>
+            <div class="l-mock-stat">
+              <div class="l-mock-val l-accent">2.340</div>
+              <div class="l-mock-lbl">Kcal hoy</div>
+            </div>
+            <div class="l-mock-divider"></div>
+            <div class="l-mock-stat">
+              <div class="l-mock-val">14</div>
+              <div class="l-mock-lbl">Sesiones</div>
+            </div>
+          </div>
+
+          <!-- Weekly chart -->
+          <div class="l-mock-section-title">PROGRESO SEMANAL</div>
+          <div class="l-chart">
+            <div class="l-bar" style="height:55%"></div>
+            <div class="l-bar" style="height:40%"></div>
+            <div class="l-bar" style="height:70%"></div>
+            <div class="l-bar" style="height:45%"></div>
+            <div class="l-bar" style="height:85%"></div>
+            <div class="l-bar" style="height:60%"></div>
+            <div class="l-bar l-bar--dim" style="height:20%"></div>
+          </div>
+          <div class="l-chart-labels">
+            <span>Lun</span><span>Mar</span><span>Mié</span>
+            <span>Jue</span><span>Vie</span><span>Sáb</span><span>Dom</span>
+          </div>
+
+          <!-- Last session -->
+          <div class="l-mock-section-title mt-3">ÚLTIMA SESIÓN</div>
+          <div class="l-exercise-row">
+            <span class="l-ex-dot" style="background:#1D9E75"></span>
+            <span class="l-ex-name">Press de banca</span>
+            <span class="l-stars">★★★★★</span>
+            <span class="l-badge l-badge--easy">Fácil</span>
+          </div>
+          <div class="l-exercise-row">
+            <span class="l-ex-dot" style="background:#EF9F27"></span>
+            <span class="l-ex-name">Sentadilla</span>
+            <span class="l-stars">★★★★☆</span>
+            <span class="l-badge l-badge--mid">Medio</span>
+          </div>
+          <div class="l-exercise-row">
+            <span class="l-ex-dot" style="background:#E24B4A"></span>
+            <span class="l-ex-name">Peso muerto</span>
+            <span class="l-stars">★★★☆☆</span>
+            <span class="l-badge l-badge--hard">Duro</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CARACTERÍSTICAS ────────────────────────────────────── -->
+<section class="l-features">
+  <div class="container-xl px-4">
+    <p class="l-section-label">CARACTERÍSTICAS</p>
+    <h2 class="l-section-title">Todo lo que necesitas<br>en un solo lugar</h2>
+    <p class="l-section-sub">Sin apps fragmentadas. Sin suscripciones de pago. Todo integrado.</p>
+
+    <div class="row g-4 mt-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="l-feat-card">
+          <div class="l-feat-icon">☰</div>
+          <h3 class="l-feat-title">Rutinas predefinidas</h3>
+          <p class="l-feat-desc">Accede a rutinas diseñadas por objetivo. Beginner, intermedio o avanzado según tu meta.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="l-feat-card">
+          <div class="l-feat-icon" style="color: var(--color-stars)">⏱</div>
+          <h3 class="l-feat-title">Tracking en tiempo real</h3>
+          <p class="l-feat-desc">Registra series, reps y peso por ejercicio. Valora cómo te has sentido con 1-5 estrellas.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="l-feat-card">
+          <div class="l-feat-icon" style="color: var(--color-info)">📈</div>
+          <h3 class="l-feat-title">Estadísticas de progreso</h3>
+          <p class="l-feat-desc">Visualiza tu evolución con gráficas de peso, rendimiento y adherencia a la dieta.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="l-feat-card">
+          <div class="l-feat-icon" style="color: var(--color-danger)">🥗</div>
+          <h3 class="l-feat-title">Seguimiento de dieta</h3>
+          <p class="l-feat-desc">Registra tus comidas, valora cada comida e identifica qué dieta funciona mejor para ti.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="l-feat-card">
+          <div class="l-feat-icon" style="color: var(--color-ai)">✨</div>
+          <h3 class="l-feat-title">Recomendaciones IA</h3>
+          <p class="l-feat-desc">El sistema analiza tus valoraciones y sugiere ajustes de peso, rutinas y dietas de forma dinámica.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="l-feat-card">
+          <div class="l-feat-icon">👤</div>
+          <h3 class="l-feat-title">Perfil personalizado</h3>
+          <p class="l-feat-desc">Define tu objetivo, peso y altura. FitForge te asigna la rutina y dieta más adecuada.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <span class="l-scroll-hint">↓</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── CÓMO FUNCIONA ──────────────────────────────────────── -->
+<section class="l-how">
+  <div class="container-xl px-4">
+    <div class="row align-items-start gy-5">
+
+      <!-- Left: steps -->
+      <div class="col-lg-5">
+        <p class="l-section-label">CÓMO FUNCIONA</p>
+        <h2 class="l-section-title">Del registro a la<br>recomendación</h2>
+        <p class="l-section-sub mb-5">Cuatro pasos simples para que el sistema aprenda de ti.</p>
+
+        <div class="l-steps">
+          <div class="l-step">
+            <div class="l-step-num">1</div>
+            <div>
+              <div class="l-step-title">Crea tu perfil</div>
+              <p class="l-step-desc">Indica tu objetivo, peso y altura. El sistema te asigna una rutina y dieta de partida.</p>
+            </div>
+          </div>
+          <div class="l-step">
+            <div class="l-step-num">2</div>
+            <div>
+              <div class="l-step-title">Registra tus sesiones</div>
+              <p class="l-step-desc">Anota series, reps y peso por ejercicio en cada entrenamiento.</p>
+            </div>
+          </div>
+          <div class="l-step">
+            <div class="l-step-num">3</div>
+            <div>
+              <div class="l-step-title">Valora con estrellas</div>
+              <p class="l-step-desc">Al terminar cada ejercicio y comida, puntúa tu experiencia del 1 al 5.</p>
+            </div>
+          </div>
+          <div class="l-step">
+            <div class="l-step-num">4</div>
+            <div>
+              <div class="l-step-title">Recibe recomendaciones</div>
+              <p class="l-step-desc">FitForge ajusta tu rutina y dieta dinámicamente según tus valoraciones.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: mini dashboard mock -->
+      <div class="col-lg-7 d-flex justify-content-center justify-content-lg-end">
+        <div class="l-mock l-mock--sm">
+          <div class="l-mock-topbar">
+            <span class="l-mock-dot r"></span>
+            <span class="l-mock-dot y"></span>
+            <span class="l-mock-dot g"></span>
+            <span class="l-mock-url">fitforge.app/dashboard</span>
+          </div>
+          <div class="l-mock-inner">
+            <div class="l-mock-section-title">Dashboard</div>
+            <div class="l-mock-stats mb-4">
+              <div class="l-mock-stat">
+                <div class="l-mock-val">87kg</div>
+                <div class="l-mock-lbl">Peso actual</div>
+              </div>
+              <div class="l-mock-divider"></div>
+              <div class="l-mock-stat">
+                <div class="l-mock-val l-accent">1.840</div>
+                <div class="l-mock-lbl">Kcal hoy</div>
+              </div>
+              <div class="l-mock-divider"></div>
+              <div class="l-mock-stat">
+                <div class="l-mock-val">14</div>
+                <div class="l-mock-lbl">Sesiones</div>
+              </div>
+            </div>
+
+            <div class="l-mock-section-title">Macros de hoy</div>
+            <div class="l-macro-row">
+              <span class="l-macro-name">Proteínas</span>
+              <div class="l-macro-bar-wrap">
+                <div class="l-macro-bar" style="width:72%; background: var(--color-primary)"></div>
+              </div>
+              <span class="l-macro-pct">72%</span>
+            </div>
+            <div class="l-macro-row">
+              <span class="l-macro-name">Carbos</span>
+              <div class="l-macro-bar-wrap">
+                <div class="l-macro-bar" style="width:55%; background: var(--color-stars)"></div>
+              </div>
+              <span class="l-macro-pct">55%</span>
+            </div>
+            <div class="l-macro-row">
+              <span class="l-macro-name">Grasas</span>
+              <div class="l-macro-bar-wrap">
+                <div class="l-macro-bar" style="width:88%; background: var(--color-danger)"></div>
+              </div>
+              <span class="l-macro-pct">88%</span>
+            </div>
+
+            <div class="l-rec-box mt-4">
+              <div class="l-rec-label">Recomendación del día</div>
+              <p class="l-rec-text">Sube 2.5kg en press banca — llevas 3 sesiones con RPE bajo</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ──────────────────────────────────────────── -->
+<section class="l-cta">
+  <div class="container-xl px-4 text-center">
+    <span class="l-pill mb-4 d-inline-block">EMPIEZA HOY</span>
+    <h2 class="l-cta-title">¿Listo para transformar<br>tu entrenamiento?</h2>
+    <p class="l-cta-sub">Únete a FitForge y empieza a entrenar con datos reales, no con suposiciones.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap mt-4">
+      <a routerLink="/register" class="btn l-btn-outline-white px-5">Crear cuenta gratis</a>
+      <a routerLink="/login"    class="btn l-btn-text">Ver cómo funciona</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer class="l-footer">
+  <div class="container-xl px-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+    <span class="l-brand">FitForge</span>
+    <div class="d-flex gap-4">
+      <a href="#" class="l-footer-link">Privacidad</a>
+      <a href="#" class="l-footer-link">Términos</a>
+      <a href="#" class="l-footer-link">Contacto</a>
+    </div>
+    <span class="l-footer-copy">© 2026 FitForge · Equipo T.A.K.O.</span>
+  </div>
+</footer>
