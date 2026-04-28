@@ -1,19 +1,29 @@
 // ── DARK THEME TOKENS ────────────────────────────────────────
-$dark-bg:        #111111;
-$dark-surface:   #1a1a1a;
+$dark-bg: #111111;
+$dark-surface: #1a1a1a;
 $dark-surface-2: #222222;
-$dark-border:    rgba(255, 255, 255, 0.08);
-$dark-text:      #ffffff;
-$dark-muted:     rgba(255, 255, 255, 0.5);
+$dark-border: rgba(255, 255, 255, 0.08);
+$dark-text: #ffffff;
+$dark-muted: rgba(255, 255, 255, 0.5);
+
+// ── LANDING CONTAINER — narrower than Bootstrap's xl ─────────
+// Keeps the content width balanced so sections don't feel stretched
+.l-container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
 
 // ── SHARED ───────────────────────────────────────────────────
 .l-brand {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 1.4rem;
+  font-size: 1.65rem;
   color: var(--color-primary);
   letter-spacing: -0.5px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .l-pill {
@@ -29,7 +39,9 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
   letter-spacing: 0.1em;
 }
 
-.l-accent { color: var(--color-primary); }
+.l-accent {
+  color: var(--color-primary);
+}
 
 .l-section-label {
   font-size: 0.72rem;
@@ -65,7 +77,10 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
   padding: 0.45rem 1.1rem;
   border-radius: 0.5rem;
 
-  &:hover { background: rgba(255,255,255,0.06); color: $dark-text; }
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: $dark-text;
+  }
 }
 
 .l-btn-solid {
@@ -76,7 +91,10 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
   padding: 0.45rem 1.1rem;
   border-radius: 0.5rem;
 
-  &:hover { background: #2a2a2a; color: $dark-text; }
+  &:hover {
+    background: #2a2a2a;
+    color: $dark-text;
+  }
 }
 
 .l-btn-white {
@@ -86,18 +104,24 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
   border-radius: 0.5rem;
   padding: 0.65rem 1.75rem;
 
-  &:hover { background: #e0e0e0; color: #111; }
+  &:hover {
+    background: #e0e0e0;
+    color: #111;
+  }
 }
 
 .l-btn-outline-white {
   background: transparent;
   color: $dark-text;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   font-weight: 500;
   border-radius: 0.5rem;
   padding: 0.65rem 1.75rem;
 
-  &:hover { border-color: rgba(255,255,255,0.6); color: $dark-text; }
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    color: $dark-text;
+  }
 }
 
 .l-btn-text {
@@ -107,7 +131,9 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
   font-weight: 500;
   padding: 0.65rem 1rem;
 
-  &:hover { color: $dark-text; }
+  &:hover {
+    color: $dark-text;
+  }
 }
 
 // ── NAVBAR ───────────────────────────────────────────────────
@@ -126,13 +152,36 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
   font-size: 0.9rem;
   transition: color 0.2s;
 
-  &:hover { color: $dark-text; }
+  &:hover {
+    color: $dark-text;
+  }
+}
+
+// ── Mobile menu toggle ──────────────────────────────────────
+.l-menu-toggle {
+  display: none; // hidden on desktop
+  background: none;
+  border: 1px solid $dark-border;
+  border-radius: 0.4rem;
+  color: $dark-text;
+  font-size: 1.3rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  line-height: 1;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.l-mobile-nav {
+  display: none; // hidden by default
 }
 
 // ── HERO ─────────────────────────────────────────────────────
 .l-hero {
   background: $dark-bg;
-  padding: 5rem 0 4.5rem;
+  padding: 3.5rem 0 3rem;
   overflow: hidden;
 }
 
@@ -154,6 +203,24 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
   margin-bottom: 2rem;
 }
 
+// Hero layout
+.l-hero-row {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.l-hero-left {
+  flex: 0 1 480px;
+  min-width: 0;
+}
+
+.l-hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
 // ── MOCK CARD ────────────────────────────────────────────────
 .l-mock {
   background: $dark-surface;
@@ -161,12 +228,12 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
   border-radius: 1rem;
   padding: 1.5rem;
   width: 100%;
-  max-width: 440px;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  max-width: 380px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
 }
 
 .l-mock--sm {
-  max-width: 400px;
+  max-width: 380px;
   padding: 0;
   overflow: hidden;
 }
@@ -183,14 +250,23 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  &.r { background: #ff5f57; }
-  &.y { background: #febc2e; }
-  &.g { background: #28c840; }
+
+  &.r {
+    background: #ff5f57;
+  }
+
+  &.y {
+    background: #febc2e;
+  }
+
+  &.g {
+    background: #28c840;
+  }
 }
 
 .l-mock-url {
   font-size: 0.68rem;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255, 255, 255, 0.3);
   margin-left: 0.5rem;
 }
 
@@ -215,7 +291,10 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
   flex-shrink: 0;
 }
 
-.l-mock-stat { flex: 1; text-align: center; }
+.l-mock-stat {
+  flex: 1;
+  text-align: center;
+}
 
 .l-mock-val {
   font-family: var(--font-display);
@@ -281,7 +360,9 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
   padding: 0.55rem 0;
   border-bottom: 1px solid $dark-border;
 
-  &:last-child { border-bottom: none; }
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .l-ex-dot {
@@ -314,10 +395,12 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
     background: rgba(29, 158, 117, 0.2);
     color: var(--color-primary);
   }
+
   &--mid {
     background: rgba(239, 159, 39, 0.2);
     color: var(--color-stars);
   }
+
   &--hard {
     background: rgba(226, 75, 74, 0.2);
     color: var(--color-danger);
@@ -327,15 +410,22 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
 // ── CARACTERÍSTICAS ───────────────────────────────────────────
 .l-features {
   background: #161616;
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   border-top: 1px solid $dark-border;
+}
+
+.l-feat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
 }
 
 .l-feat-card {
   background: $dark-surface;
   border: 1px solid $dark-border;
   border-radius: 0.875rem;
-  padding: 1.75rem;
+  padding: 1.5rem;
   height: 100%;
   transition: border-color 0.2s, transform 0.2s;
 
@@ -376,8 +466,26 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
 // ── CÓMO FUNCIONA ────────────────────────────────────────────
 .l-how {
   background: $dark-bg;
-  padding: 5rem 0;
+  padding: 3.5rem 0;
   border-top: 1px solid $dark-border;
+}
+
+.l-how-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+.l-how-left {
+  flex: 0 1 420px;
+  min-width: 0;
+}
+
+.l-how-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10.5rem;
 }
 
 .l-steps {
@@ -485,7 +593,7 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
 .l-cta {
   background: #161616;
   border-top: 1px solid $dark-border;
-  padding: 6rem 0;
+  padding: 4.5rem 0;
 }
 
 .l-cta-title {
@@ -511,16 +619,202 @@ $dark-muted:     rgba(255, 255, 255, 0.5);
   padding: 1.5rem 0;
 }
 
+.l-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.l-footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
 .l-footer-link {
   font-size: 0.82rem;
   color: $dark-muted;
   text-decoration: none;
   transition: color 0.2s;
 
-  &:hover { color: $dark-text; }
+  &:hover {
+    color: $dark-text;
+  }
 }
 
 .l-footer-copy {
   font-size: 0.78rem;
-  color: rgba(255,255,255,0.25);
+  color: rgba(255, 255, 255, 0.25);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ── RESPONSIVE ─────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+
+// ── Tablet (≤ 991px) ──────────────────────────────────────────
+@media (max-width: 991px) {
+
+  // Navbar — show hamburger, hide desktop nav
+  .l-menu-toggle {
+    display: block;
+  }
+
+  .l-nav-desktop {
+    display: none !important;
+  }
+
+  .l-nav-auth {
+    display: none !important;
+  }
+
+  .l-mobile-nav {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid $dark-border;
+    background: rgba(17, 17, 17, 0.96);
+
+    &.is-open {
+      display: flex;
+    }
+
+    a {
+      color: $dark-muted;
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 0.5rem 0;
+      transition: color 0.2s;
+
+      &:hover {
+        color: $dark-text;
+      }
+    }
+  }
+
+  // Hero
+  .l-hero {
+    padding: 2.5rem 0 2rem;
+  }
+
+  .l-hero-row {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .l-hero-left {
+    flex: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  .l-hero-sub {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .l-hero-right {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .l-mock {
+    max-width: 480px;
+    width: 100%;
+  }
+
+  .l-hero .d-flex.gap-3 {
+    justify-content: center;
+  }
+
+  // Features
+  .l-feat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  // How section
+  .l-how-row {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .l-how-left {
+    flex: none;
+    width: 100%;
+  }
+
+  .l-how-right {
+    justify-content: center;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  // Footer
+  .l-footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+// ── Mobile (≤ 575px) ──────────────────────────────────────────
+@media (max-width: 575px) {
+  .l-container {
+    padding: 0 1rem;
+  }
+
+  .l-hero {
+    padding: 2rem 0 1.5rem;
+  }
+
+  .l-hero-title {
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+  }
+
+  .l-mock {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+
+  .l-mock--sm {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .l-features {
+    padding: 2.5rem 0;
+  }
+
+  .l-feat-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .l-feat-card {
+    padding: 1.25rem;
+  }
+
+  .l-how {
+    padding: 2.5rem 0;
+  }
+
+  .l-cta {
+    padding: 3rem 0;
+  }
+
+  .l-cta-title {
+    font-size: clamp(1.5rem, 7vw, 2.2rem);
+  }
+
+  .l-section-title {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .l-footer-links {
+    gap: 1rem;
+  }
+
+  .l-nav .l-container {
+    padding: 0 1rem;
+  }
 }

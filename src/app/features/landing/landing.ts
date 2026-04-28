@@ -7,4 +7,10 @@ import { RouterLink } from '@angular/router';
   templateUrl: './landing.html',
   styleUrl: './landing.scss',
 })
-export class Landing {}
+export class Landing {
+  menuOpen = false;
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
