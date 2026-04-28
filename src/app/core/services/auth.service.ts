@@ -16,7 +16,10 @@ export class AuthService {
   private readonly TOKEN_KEY = 'token';
   readonly isLoggedIn = signal(this.hasValidToken());
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   login(email: string, password: string) {
     return this.http
@@ -25,7 +28,7 @@ export class AuthService {
         tap(({ token }) => {
           localStorage.setItem(this.TOKEN_KEY, token);
           this.isLoggedIn.set(true);
-        })
+        }),
       );
   }
 
