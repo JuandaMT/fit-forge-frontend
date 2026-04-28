@@ -1,48 +1,143 @@
-// Bootstrap overrides
-.btn-primary {
+// ─────────────────────────────────────────────────────────────
+// FITFORGE — Botones y componentes clave
+// ─────────────────────────────────────────────────────────────
+
+// ── BOTONES ───────────────────────────────────────────────────
+
+// Primario — fondo verde, texto blanco
+.btn-ff-primary {
   background-color: var(--color-primary);
-  border-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s;
 
   &:hover, &:focus {
     background-color: var(--color-primary-dark);
-    border-color: var(--color-primary-dark);
+    color: #fff;
   }
+}
+
+// Secundario — borde, fondo transparente, texto claro
+.btn-ff-secondary {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s, background-color 0.2s;
+
+  &:hover {
+    background-color: var(--color-surface-2);
+    color: var(--color-text);
+    border-color: rgba(255,255,255,0.2);
+  }
+}
+
+// Peligro — borde rojo
+.btn-ff-danger {
+  background-color: transparent;
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--color-hard-bg);
+    color: var(--color-danger);
+  }
+}
+
+// ── BADGES ───────────────────────────────────────────────────
+
+%badge-base {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+// Fácil — verde
+.badge-easy {
+  @extend %badge-base;
+  background: var(--color-easy-bg);
+  color: var(--color-easy);
+  border: 1px solid rgba(29, 158, 117, 0.25);
+}
+
+// Medio — ámbar
+.badge-mid {
+  @extend %badge-base;
+  background: var(--color-mid-bg);
+  color: var(--color-mid);
+  border: 1px solid rgba(239, 159, 39, 0.25);
+}
+
+// Duro — rojo
+.badge-hard {
+  @extend %badge-base;
+  background: var(--color-hard-bg);
+  color: var(--color-hard);
+  border: 1px solid rgba(226, 75, 74, 0.25);
+}
+
+// Recomendado IA — púrpura
+.badge-ai {
+  @extend %badge-base;
+  background: rgba(83, 74, 183, 0.12);
+  color: var(--color-ai);
+  border: 1px solid rgba(83, 74, 183, 0.25);
+}
+
+// ── ESTRELLAS ─────────────────────────────────────────────────
+.ff-stars {
+  color: var(--color-stars);
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+}
+
+// ── CARDS ────────────────────────────────────────────────────
+.ff-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+// ── EYEBROW LABEL (tipo "CARACTERÍSTICAS") ────────────────────
+.ff-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  letter-spacing: var(--text-label-spacing);
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+// ── OVERRIDES BOOTSTRAP ───────────────────────────────────────
+// Sobreescribir colores de Bootstrap con los tokens de FitForge
+.btn-primary {
+  --bs-btn-bg: var(--color-primary);
+  --bs-btn-border-color: var(--color-primary);
+  --bs-btn-hover-bg: var(--color-primary-dark);
+  --bs-btn-hover-border-color: var(--color-primary-dark);
+  --bs-btn-active-bg: var(--color-primary-dark);
 }
 
 .btn-outline-primary {
-  color: var(--color-primary);
-  border-color: var(--color-primary);
-
-  &:hover {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
-  }
+  --bs-btn-color: var(--color-primary);
+  --bs-btn-border-color: var(--color-primary);
+  --bs-btn-hover-bg: var(--color-primary);
+  --bs-btn-hover-border-color: var(--color-primary);
 }
 
-// Cards
-.card {
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
-}
-
-// Badges
-.badge-ai {
-  background-color: var(--color-ai);
-  color: #fff;
-}
-
-.badge-primary {
-  background-color: var(--color-primary-light);
-  color: var(--color-primary-dark);
-}
-
-// Utility classes
-.surface {
-  background-color: var(--color-surface);
-  border-radius: var(--radius-md);
-}
-
+// ── MISC ──────────────────────────────────────────────────────
 .text-truncate-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;

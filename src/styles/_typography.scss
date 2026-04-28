@@ -1,30 +1,89 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
 
+// ── BASE ──────────────────────────────────────────────────────
 body {
   font-family: var(--font-body);
   font-weight: 400;
+  font-size: var(--text-body-lg-size);
+  line-height: var(--text-body-lg-line);
   color: var(--color-text);
   background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, .display-font {
+// ── CLASES DE ESCALA TIPOGRÁFICA ─────────────────────────────
+
+// heading-xl — Hero principal
+.text-heading-xl {
   font-family: var(--font-display);
-  font-weight: 800;
+  font-size: var(--text-heading-xl-size);
+  font-weight: var(--text-heading-xl-weight);
+  line-height: var(--text-heading-xl-line);
+  letter-spacing: var(--text-heading-xl-spacing);
 }
 
-h3, h4, h5, h6 {
+// heading-lg — Títulos de sección
+.text-heading-lg {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-size: var(--text-heading-lg-size);
+  font-weight: var(--text-heading-lg-weight);
+  line-height: var(--text-heading-lg-line);
+  letter-spacing: var(--text-heading-lg-spacing);
 }
 
-.text-ai {
-  color: var(--color-ai);
+// heading-md — Títulos de card
+.text-heading-md {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-md-size);
+  font-weight: var(--text-heading-md-weight);
+  line-height: var(--text-heading-md-line);
+  letter-spacing: var(--text-heading-md-spacing);
 }
 
-.text-stars {
-  color: var(--color-stars);
+// body-lg — Párrafos principales
+.text-body-lg {
+  font-family: var(--font-body);
+  font-size: var(--text-body-lg-size);
+  font-weight: var(--text-body-lg-weight);
+  line-height: var(--text-body-lg-line);
 }
 
-.text-primary-brand {
-  color: var(--color-primary);
+// body-sm — UI secundaria, descripciones
+.text-body-sm {
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm-size);
+  font-weight: var(--text-body-sm-weight);
+  line-height: var(--text-body-sm-line);
 }
+
+// label — Badges, eyebrow, tags
+.text-label {
+  font-family: var(--font-body);
+  font-size: var(--text-label-size);
+  font-weight: var(--text-label-weight);
+  line-height: var(--text-label-line);
+  letter-spacing: var(--text-label-spacing);
+  text-transform: uppercase;
+}
+
+// stat — Números en dashboard
+.text-stat {
+  font-family: var(--font-display);
+  font-size: var(--text-stat-size);
+  font-weight: var(--text-stat-weight);
+  line-height: var(--text-stat-line);
+}
+
+// ── OVERRIDES HTML ELEMENTS ───────────────────────────────────
+h1 { @extend .text-heading-xl; }
+h2 { @extend .text-heading-lg; }
+h3 { @extend .text-heading-md; }
+
+// ── UTILIDADES DE COLOR ───────────────────────────────────────
+.text-primary   { color: var(--color-primary)  !important; }
+.text-muted-ff  { color: var(--color-text-muted) !important; }
+.text-stars     { color: var(--color-stars)    !important; }
+.text-danger-ff { color: var(--color-danger)   !important; }
+.text-ai        { color: var(--color-ai)        !important; }
+.text-info-ff   { color: var(--color-info)      !important; }
