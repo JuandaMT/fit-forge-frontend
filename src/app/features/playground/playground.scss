@@ -30,7 +30,9 @@
   padding-bottom: 3rem;
   border-bottom: 1px solid var(--color-border);
 
-  &:last-child { border-bottom: none; }
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .pg-section-title {
@@ -44,7 +46,7 @@
     font-family: 'Courier New', monospace;
     font-size: 0.82rem;
     color: var(--color-ai);
-    background: rgba(83,74,183,0.1);
+    background: rgba(83, 74, 183, 0.1);
     padding: 0.1rem 0.4rem;
     border-radius: 4px;
     font-weight: 400;
@@ -111,7 +113,7 @@
   code {
     font-family: 'Courier New', monospace;
     font-size: 0.78rem;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255, 255, 255, 0.65);
     line-height: 1.6;
   }
 }
@@ -131,13 +133,28 @@
   padding: 0.35rem 0;
   border-bottom: 1px solid var(--color-border);
 
-  &:last-child { border-bottom: none; }
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
-.prop-name    { color: var(--color-primary); font-family: monospace; }
-.prop-type    { color: rgba(255,255,255,0.5); font-family: monospace; }
-.prop-default { color: var(--color-text-muted); font-family: monospace; }
-.prop-req     { color: var(--color-danger); font-size: 0.7rem; font-weight: 600; }
+.prop-name {
+  color: var(--color-primary);
+  font-family: monospace;
+}
+.prop-type {
+  color: rgba(255, 255, 255, 0.5);
+  font-family: monospace;
+}
+.prop-default {
+  color: var(--color-text-muted);
+  font-family: monospace;
+}
+.prop-req {
+  color: var(--color-danger);
+  font-size: 0.7rem;
+  font-weight: 600;
+}
 
 // ── Colors ───────────────────────────────────────────────────
 .pg-colors {
@@ -154,10 +171,19 @@
   color: #fff;
   font-size: 0.75rem;
 
-  span { display: block; font-weight: 600; margin-bottom: 0.2rem; }
-  code { font-family: monospace; opacity: 0.8; }
+  span {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+  code {
+    font-family: monospace;
+    opacity: 0.8;
+  }
 
-  &--dark { color: #0F6E56; }
+  &--dark {
+    color: #0f6e56;
+  }
 }
 
 // ── Typography ───────────────────────────────────────────────
@@ -175,7 +201,9 @@
   padding: 0.85rem 0;
   border-bottom: 1px solid var(--color-border);
 
-  &:last-child { border-bottom: none; }
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .pg-typo-token {

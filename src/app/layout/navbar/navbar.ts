@@ -6,13 +6,25 @@ import { AuthService } from '../../core/services/auth.service';
   selector: 'app-navbar',
   imports: [RouterLink, RouterLinkActive],
   template: `
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--color-primary);">
+    <nav
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: var(--color-primary);"
+    >
       <div class="container-fluid px-4">
-        <a class="navbar-brand fw-bold" routerLink="/dashboard" style="font-family: var(--font-display);">
+        <a
+          class="navbar-brand fw-bold"
+          routerLink="/dashboard"
+          style="font-family: var(--font-display);"
+        >
           FitForge
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -22,7 +34,9 @@ import { AuthService } from '../../core/services/auth.service';
               <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/workouts" routerLinkActive="active">Entrenamientos</a>
+              <a class="nav-link" routerLink="/workouts" routerLinkActive="active"
+                >Entrenamientos</a
+              >
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/nutrition" routerLinkActive="active">Nutrición</a>
@@ -37,7 +51,9 @@ import { AuthService } from '../../core/services/auth.service';
               <a class="nav-link" routerLink="/profile" routerLinkActive="active">Perfil</a>
             </li>
             <li class="nav-item">
-              <button class="btn btn-outline-light btn-sm" (click)="auth.logout()">Cerrar sesión</button>
+              <button class="btn btn-outline-light btn-sm" (click)="auth.logout()">
+                Cerrar sesión
+              </button>
             </li>
           </ul>
         </div>

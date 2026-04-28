@@ -13,42 +13,52 @@ export type MacroColor = 'primary' | 'stars' | 'danger' | 'info';
       <span class="value">{{ valueLabel() }}</span>
     </div>
   `,
-  styles: [`
-    .ff-macro-bar {
-      display: grid;
-      grid-template-columns: 90px 1fr auto;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.35rem 0;
-    }
-    .name {
-      font-size: 0.82rem;
-      color: var(--color-text);
-    }
-    .track {
-      height: 6px;
-      background: var(--color-surface-2);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-    .fill {
-      height: 100%;
-      border-radius: 999px;
-      transition: width .3s;
+  styles: [
+    `
+      .ff-macro-bar {
+        display: grid;
+        grid-template-columns: 90px 1fr auto;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.35rem 0;
+      }
+      .name {
+        font-size: 0.82rem;
+        color: var(--color-text);
+      }
+      .track {
+        height: 6px;
+        background: var(--color-surface-2);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .fill {
+        height: 100%;
+        border-radius: 999px;
+        transition: width 0.3s;
 
-      &[data-color="primary"] { background: var(--color-primary); }
-      &[data-color="stars"]   { background: var(--color-stars); }
-      &[data-color="danger"]  { background: var(--color-danger); }
-      &[data-color="info"]    { background: var(--color-info); }
-    }
-    .value {
-      font-size: 0.78rem;
-      color: var(--color-text-muted);
-      min-width: 56px;
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-    }
-  `],
+        &[data-color='primary'] {
+          background: var(--color-primary);
+        }
+        &[data-color='stars'] {
+          background: var(--color-stars);
+        }
+        &[data-color='danger'] {
+          background: var(--color-danger);
+        }
+        &[data-color='info'] {
+          background: var(--color-info);
+        }
+      }
+      .value {
+        font-size: 0.78rem;
+        color: var(--color-text-muted);
+        min-width: 56px;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+    `,
+  ],
 })
 export class MacroBar {
   name = input.required<string>();

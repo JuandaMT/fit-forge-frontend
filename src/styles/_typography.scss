@@ -76,14 +76,32 @@ body {
 }
 
 // ── OVERRIDES HTML ELEMENTS ───────────────────────────────────
-h1 { @extend .text-heading-xl; }
-h2 { @extend .text-heading-lg; }
-h3 { @extend .text-heading-md; }
+h1 {
+  @extend .text-heading-xl;
+}
+h2 {
+  @extend .text-heading-lg;
+}
+h3 {
+  @extend .text-heading-md;
+}
 
 // ── UTILIDADES DE COLOR ───────────────────────────────────────
-.text-primary   { color: var(--color-primary)  !important; }
-.text-muted-ff  { color: var(--color-text-muted) !important; }
-.text-stars     { color: var(--color-stars)    !important; }
-.text-danger-ff { color: var(--color-danger)   !important; }
-.text-ai        { color: var(--color-ai)        !important; }
-.text-info-ff   { color: var(--color-info)      !important; }
+.text-primary {
+  color: var(--color-primary) !important;
+}
+.text-muted-ff {
+  color: var(--color-text-muted) !important;
+}
+.text-stars {
+  color: var(--color-stars) !important;
+}
+.text-danger-ff {
+  color: var(--color-danger) !important;
+}
+.text-ai {
+  color: var(--color-ai) !important;
+}
+.text-info-ff {
+  color: var(--color-info) !important;
+}
