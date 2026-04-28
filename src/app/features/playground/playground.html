@@ -1,0 +1,198 @@
+<div class="pg-wrapper">
+  <div class="pg-header">
+    <h1 class="pg-title">Component Playground</h1>
+    <p class="pg-subtitle">FitForge · Shared components</p>
+  </div>
+
+  <!-- ── BADGE ──────────────────────────────────────────────── -->
+  <section class="pg-section">
+    <h2 class="pg-section-title">Badge <code>ff-badge</code></h2>
+    <p class="pg-desc">Indicadores semánticos de dificultad, estado y tipo.</p>
+
+    <div class="pg-row">
+      <ff-badge variant="easy">Fácil</ff-badge>
+      <ff-badge variant="mid">Medio</ff-badge>
+      <ff-badge variant="hard">Duro</ff-badge>
+      <ff-badge variant="ai">Recomendado IA</ff-badge>
+      <ff-badge variant="primary">Principal</ff-badge>
+      <ff-badge variant="neutral">Neutro</ff-badge>
+    </div>
+
+    <div class="pg-code">
+      <pre><code>
+&lt;ff-badge variant="easy"&gt;Fácil&lt;/ff-badge&gt;
+&lt;ff-badge variant="mid"&gt;Medio&lt;/ff-badge&gt;
+&lt;ff-badge variant="hard"&gt;Duro&lt;/ff-badge&gt;
+&lt;ff-badge variant="ai"&gt;Recomendado IA&lt;/ff-badge&gt;
+      </code></pre>
+    </div>
+
+    <div class="pg-props">
+      <div class="pg-prop"><span class="prop-name">variant</span><span class="prop-type">'easy' | 'mid' | 'hard' | 'ai' | 'primary' | 'neutral'</span><span class="prop-default">'neutral'</span></div>
+    </div>
+  </section>
+
+  <!-- ── STAR RATING — display ──────────────────────────────── -->
+  <section class="pg-section">
+    <h2 class="pg-section-title">StarRating — display <code>ff-star-rating</code></h2>
+    <p class="pg-desc">Muestra una valoración estática. Útil en listas y resúmenes.</p>
+
+    <div class="pg-row">
+      <div class="pg-demo-item">
+        <span class="pg-demo-label">1 / 5</span>
+        <ff-star-rating [value]="1" />
+      </div>
+      <div class="pg-demo-item">
+        <span class="pg-demo-label">3 / 5</span>
+        <ff-star-rating [value]="3" />
+      </div>
+      <div class="pg-demo-item">
+        <span class="pg-demo-label">5 / 5</span>
+        <ff-star-rating [value]="5" />
+      </div>
+      <div class="pg-demo-item">
+        <span class="pg-demo-label">Con valor</span>
+        <ff-star-rating [value]="ratingDisplay()" [showValue]="true" />
+      </div>
+    </div>
+
+    <div class="pg-code">
+      <pre><code>
+&lt;!-- Solo display --&gt;
+&lt;ff-star-rating [value]="4" /&gt;
+
+&lt;!-- Con número --&gt;
+&lt;ff-star-rating [value]="4" [showValue]="true" /&gt;
+      </code></pre>
+    </div>
+
+    <div class="pg-props">
+      <div class="pg-prop"><span class="prop-name">value</span><span class="prop-type">number</span><span class="prop-req">required</span></div>
+      <div class="pg-prop"><span class="prop-name">max</span><span class="prop-type">number</span><span class="prop-default">5</span></div>
+      <div class="pg-prop"><span class="prop-name">showValue</span><span class="prop-type">boolean</span><span class="prop-default">false</span></div>
+    </div>
+  </section>
+
+  <!-- ── STAR RATING — interactivo ─────────────────────────── -->
+  <section class="pg-section">
+    <h2 class="pg-section-title">StarRating — interactivo</h2>
+    <p class="pg-desc">Permite al usuario seleccionar una valoración. Hover animado. Úsalo en rate-exercise y rate-meal.</p>
+
+    <div class="pg-row align-items-start gap-5">
+      <div>
+        <div class="pg-demo-label mb-2">Gusto por el ejercicio</div>
+        <ff-star-rating
+          [value]="ratingEnjoyment()"
+          [interactive]="true"
+          (valueChange)="ratingEnjoyment.set($event)"
+        />
+        <div class="pg-demo-result">Valor: {{ ratingEnjoyment() }}</div>
+      </div>
+      <div>
+        <div class="pg-demo-label mb-2">Dificultad</div>
+        <ff-star-rating
+          [value]="ratingDifficulty()"
+          [interactive]="true"
+          (valueChange)="ratingDifficulty.set($event)"
+        />
+        <div class="pg-demo-result">Valor: {{ ratingDifficulty() }}</div>
+      </div>
+    </div>
+
+    <div class="pg-code">
+      <pre><code>
+&lt;ff-star-rating
+  [value]="rating()"
+  [interactive]="true"
+  (valueChange)="rating.set($event)"
+/&gt;
+      </code></pre>
+    </div>
+
+    <div class="pg-props">
+      <div class="pg-prop"><span class="prop-name">interactive</span><span class="prop-type">boolean</span><span class="prop-default">false</span></div>
+      <div class="pg-prop"><span class="prop-name">valueChange</span><span class="prop-type">output&lt;number&gt;</span><span class="prop-default">—</span></div>
+    </div>
+  </section>
+
+  <!-- ── MACRO BAR ──────────────────────────────────────────── -->
+  <section class="pg-section">
+    <h2 class="pg-section-title">MacroBar <code>ff-macro-bar</code></h2>
+    <p class="pg-desc">Barra de progreso para macronutrientes. Grid alineado automáticamente.</p>
+
+    <div class="pg-demo-block">
+      <ff-macro-bar name="Proteínas" [current]="proteins()" [target]="165" unit="g" color="primary" />
+      <ff-macro-bar name="Carbohidratos" [current]="carbs()" [target]="260" unit="g" color="stars" />
+      <ff-macro-bar name="Grasas" [current]="fats()" [target]="70" unit="g" color="danger" />
+      <ff-macro-bar name="Fibra" [current]="22" unit="g" />
+    </div>
+
+    <div class="pg-code">
+      <pre><code>
+&lt;!-- Con objetivo --&gt;
+&lt;ff-macro-bar name="Proteínas" [current]="120" [target]="165" unit="g" color="primary" /&gt;
+
+&lt;!-- Sin objetivo (barra vacía) --&gt;
+&lt;ff-macro-bar name="Fibra" [current]="22" unit="g" /&gt;
+      </code></pre>
+    </div>
+
+    <div class="pg-props">
+      <div class="pg-prop"><span class="prop-name">name</span><span class="prop-type">string</span><span class="prop-req">required</span></div>
+      <div class="pg-prop"><span class="prop-name">current</span><span class="prop-type">number</span><span class="prop-req">required</span></div>
+      <div class="pg-prop"><span class="prop-name">target</span><span class="prop-type">number | null</span><span class="prop-default">null</span></div>
+      <div class="pg-prop"><span class="prop-name">unit</span><span class="prop-type">string</span><span class="prop-default">'g'</span></div>
+      <div class="pg-prop"><span class="prop-name">color</span><span class="prop-type">'primary' | 'stars' | 'danger' | 'info'</span><span class="prop-default">'primary'</span></div>
+    </div>
+  </section>
+
+  <!-- ── COLORES ───────────────────────────────────────────── -->
+  <section class="pg-section">
+    <h2 class="pg-section-title">Paleta de colores</h2>
+    <div class="pg-colors">
+      <div class="pg-color-chip" style="background:#1D9E75"><span>Primary</span><code>#1D9E75</code></div>
+      <div class="pg-color-chip" style="background:#0F6E56"><span>Primary Dark</span><code>#0F6E56</code></div>
+      <div class="pg-color-chip pg-color-chip--dark" style="background:#E1F5EE; color:#0F6E56"><span>Primary Light</span><code>#E1F5EE</code></div>
+      <div class="pg-color-chip" style="background:#EF9F27"><span>Stars</span><code>#EF9F27</code></div>
+      <div class="pg-color-chip" style="background:#E24B4A"><span>Danger</span><code>#E24B4A</code></div>
+      <div class="pg-color-chip" style="background:#185FA5"><span>Info</span><code>#185FA5</code></div>
+      <div class="pg-color-chip" style="background:#534AB7"><span>AI</span><code>#534AB7</code></div>
+    </div>
+  </section>
+
+  <!-- ── TIPOGRAFÍA ───────────────────────────────────────── -->
+  <section class="pg-section">
+    <h2 class="pg-section-title">Escala tipográfica</h2>
+    <div class="pg-typo">
+      <div class="pg-typo-row">
+        <span class="pg-typo-token">heading-xl</span>
+        <span class="text-heading-xl">Entrena mejor</span>
+      </div>
+      <div class="pg-typo-row">
+        <span class="pg-typo-token">heading-lg</span>
+        <span class="text-heading-lg">Estadísticas</span>
+      </div>
+      <div class="pg-typo-row">
+        <span class="pg-typo-token">heading-md</span>
+        <span class="text-heading-md">Última sesión</span>
+      </div>
+      <div class="pg-typo-row">
+        <span class="pg-typo-token">body-lg</span>
+        <span class="text-body-lg">Párrafos y descripciones principales de la app.</span>
+      </div>
+      <div class="pg-typo-row">
+        <span class="pg-typo-token">body-sm</span>
+        <span class="text-body-sm">Series · Repeticiones · Peso · UI secundaria</span>
+      </div>
+      <div class="pg-typo-row">
+        <span class="pg-typo-token">label</span>
+        <span class="text-label" style="color: var(--color-primary)">Características</span>
+      </div>
+      <div class="pg-typo-row">
+        <span class="pg-typo-token">stat</span>
+        <span class="text-stat" style="color: var(--color-primary)">2.340 kcal</span>
+      </div>
+    </div>
+  </section>
+
+</div>
