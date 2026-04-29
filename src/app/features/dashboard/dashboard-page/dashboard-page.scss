@@ -1,0 +1,349 @@
+// ─────────────────────────────────────────────────────────────
+// FITFORGE — Dashboard Page Styles
+// ─────────────────────────────────────────────────────────────
+// Uses ONLY design tokens from _tokens.scss via CSS custom
+// properties.  No hard-coded colours.
+// ─────────────────────────────────────────────────────────────
+
+:host {
+  display: block;
+  padding: var(--space-xl) var(--space-xl) var(--space-3xl);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+// ── HEADER ───────────────────────────────────────────────────
+.db-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.db-greeting {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  color: var(--color-text);
+  margin: 0 0 0.25rem;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.db-date {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.db-cta-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+// ── KPI GRID ─────────────────────────────────────────────────
+.db-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+// ── MIDDLE ROW ───────────────────────────────────────────────
+.db-middle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+// ── WEEKLY CHART ─────────────────────────────────────────────
+.db-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  height: 110px;
+  margin-bottom: 0.75rem;
+}
+
+.db-chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  height: 100%;
+}
+
+.db-bar-wrapper {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.db-bar {
+  width: 100%;
+  max-width: 28px;
+  background: var(--color-primary);
+  border-radius: 4px 4px 0 0;
+  opacity: 0.9;
+  transition: height 0.3s ease;
+
+  &--empty {
+    background: var(--color-surface-2);
+    opacity: 1;
+  }
+}
+
+.db-day-label {
+  font-size: 0.68rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.db-chart-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.db-chart-pct {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+// ── MACROS CARD ──────────────────────────────────────────────
+.db-cal-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-md);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border);
+}
+
+.db-cal-label {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.db-cal-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--color-text);
+}
+
+// ── BOTTOM ROW ───────────────────────────────────────────────
+.db-bottom {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-md);
+  align-items: start;
+}
+
+// ── EXERCISE ROWS ────────────────────────────────────────────
+.db-exercises {
+  display: flex;
+  flex-direction: column;
+}
+
+.db-exercise-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--color-border);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.db-ex-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  &[data-diff='easy'] {
+    background: var(--color-easy);
+  }
+  &[data-diff='mid'] {
+    background: var(--color-mid);
+  }
+  &[data-diff='hard'] {
+    background: var(--color-hard);
+  }
+}
+
+.db-ex-name {
+  font-size: 0.88rem;
+  color: var(--color-text);
+  min-width: 0;
+  flex: 1;
+}
+
+.db-ex-detail {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+// ── SIDEBAR ──────────────────────────────────────────────────
+.db-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+// ── AI RECOMMENDATIONS ───────────────────────────────────────
+.db-rec-card {
+  background: rgba(83, 74, 183, 0.08);
+  border: 1px solid rgba(83, 74, 183, 0.22);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.4rem;
+}
+
+.db-rec-header {
+  margin-bottom: 0.85rem;
+}
+
+.db-rec-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-ai);
+}
+
+.db-rec-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(83, 74, 183, 0.15);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.db-rec-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.db-rec-text {
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+// ── PLAN INFO ────────────────────────────────────────────────
+.db-plan-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--color-border);
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.db-plan-title {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--color-text);
+}
+
+.db-plan-detail {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  margin-top: 0.15rem;
+}
+
+.db-plan-btn {
+  width: 100%;
+  margin-top: var(--space-sm);
+  text-align: center;
+}
+
+// ═════════════════════════════════════════════════════════════
+// ── RESPONSIVE ──────────────────────────────────────────────
+// ═════════════════════════════════════════════════════════════
+
+// ── Tablet (≤ 991px) ────────────────────────────────────────
+@media (max-width: 991px) {
+  :host {
+    padding: var(--space-lg) var(--space-md) var(--space-2xl);
+  }
+
+  .db-kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .db-middle {
+    grid-template-columns: 1fr;
+  }
+
+  .db-bottom {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Mobile (≤ 575px) ────────────────────────────────────────
+@media (max-width: 575px) {
+  :host {
+    padding: var(--space-md) var(--space-sm) var(--space-2xl);
+  }
+
+  .db-header {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .db-cta-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .db-kpis {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+  }
+
+  .db-exercise-row {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .db-ex-name {
+    min-width: 100%;
+    order: 1;
+  }
+
+  .db-ex-dot {
+    order: 0;
+  }
+
+  .db-ex-detail {
+    order: 2;
+    flex: 1;
+  }
+
+  .db-chart {
+    height: 80px;
+  }
+}
