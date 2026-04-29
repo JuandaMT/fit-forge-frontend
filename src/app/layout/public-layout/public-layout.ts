@@ -9,14 +9,16 @@ import { RouterOutlet } from '@angular/router';
       <router-outlet />
     </div>
   `,
-  styles: [`
-    .public-wrapper {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--color-bg);
-    }
-  `],
+  styles: [
+    `
+      .public-wrapper {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--color-bg);
+      }
+    `,
+  ],
 })
 export class PublicLayout {}

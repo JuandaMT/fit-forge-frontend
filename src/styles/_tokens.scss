@@ -3,88 +3,87 @@
 // ─────────────────────────────────────────────────────────────
 
 :root {
-
   // ── COLORES ──────────────────────────────────────────────
   // Principal
-  --color-primary:        #1D9E75;   // CTAs, accents, logo, progreso
-  --color-primary-light:  #E1F5EE;   // Badges, eyebrow labels, highlights
-  --color-primary-dark:   #0F6E56;   // Texto sobre fondos teal claros
+  --color-primary: #1d9e75; // CTAs, accents, logo, progreso
+  --color-primary-light: #e1f5ee; // Badges, eyebrow labels, highlights
+  --color-primary-dark: #0f6e56; // Texto sobre fondos teal claros
 
   // Semánticos
-  --color-stars:          #EF9F27;   // Valoraciones 1-5, ratings
-  --color-danger:         #E24B4A;   // Badge "Duro", errores, alertas
-  --color-info:           #185FA5;   // Estadísticas, gráficas secundarias
-  --color-ai:             #534AB7;   // Recomendaciones IA — exclusivo
+  --color-stars: #ef9f27; // Valoraciones 1-5, ratings
+  --color-danger: #e24b4a; // Badge "Duro", errores, alertas
+  --color-info: #185fa5; // Estadísticas, gráficas secundarias
+  --color-ai: #534ab7; // Recomendaciones IA — exclusivo
 
   // Semántica por contexto
-  --color-easy:           #1D9E75;   // Fácil / Éxito / RPE bajo / satiety alta
-  --color-easy-bg:        rgba(29, 158, 117, 0.12);
-  --color-mid:            #EF9F27;   // Medio / Atención / calor / advertencias
-  --color-mid-bg:         rgba(239, 159, 39, 0.12);
-  --color-hard:           #E24B4A;   // Duro / Error / RPE alto
-  --color-hard-bg:        rgba(226, 75, 74, 0.12);
+  --color-easy: #1d9e75; // Fácil / Éxito / RPE bajo / satiety alta
+  --color-easy-bg: rgba(29, 158, 117, 0.12);
+  --color-mid: #ef9f27; // Medio / Atención / calor / advertencias
+  --color-mid-bg: rgba(239, 159, 39, 0.12);
+  --color-hard: #e24b4a; // Duro / Error / RPE alto
+  --color-hard-bg: rgba(226, 75, 74, 0.12);
 
   // Fondo / superficies (dark theme)
-  --color-bg:             #111111;
-  --color-surface:        #1A1A1A;
-  --color-surface-2:      #222222;
-  --color-border:         rgba(255, 255, 255, 0.08);
+  --color-bg: #111111;
+  --color-surface: #1a1a1a;
+  --color-surface-2: #222222;
+  --color-border: rgba(255, 255, 255, 0.08);
 
   // Texto (dark theme)
-  --color-text:           #FFFFFF;
-  --color-text-muted:     rgba(255, 255, 255, 0.5);
-  --color-text-disabled:  rgba(255, 255, 255, 0.25);
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.5);
+  --color-text-disabled: rgba(255, 255, 255, 0.25);
 
   // ── TIPOGRAFÍAS ───────────────────────────────────────────
-  --font-display: 'Syne',    sans-serif;   // H1, H2, logo, hero, CTAs, stats
+  --font-display: 'Rubik',    sans-serif;   // H1, H2, logo, hero, CTAs, stats
   --font-body:    'DM Sans', sans-serif;   // Body, labels, navegación, UI
 
   // ── ESCALA TIPOGRÁFICA ────────────────────────────────────
   // heading-xl  — Hero principal
-  --text-heading-xl-size:   clamp(2.25rem, 5vw, 3.5rem);
+  --text-heading-xl-size: clamp(2.25rem, 5vw, 3.5rem);
   --text-heading-xl-weight: 800;
-  --text-heading-xl-line:   1.1;
+  --text-heading-xl-line: 1.1;
   --text-heading-xl-spacing: -0.03em;
 
   // heading-lg  — Títulos de sección
-  --text-heading-lg-size:   clamp(1.75rem, 3.5vw, 2.5rem);
+  --text-heading-lg-size: clamp(1.75rem, 3.5vw, 2.5rem);
   --text-heading-lg-weight: 800;
-  --text-heading-lg-line:   1.15;
+  --text-heading-lg-line: 1.15;
   --text-heading-lg-spacing: -0.02em;
 
   // heading-md  — Títulos de card
-  --text-heading-md-size:   1.125rem;
+  --text-heading-md-size: 1.125rem;
   --text-heading-md-weight: 700;
-  --text-heading-md-line:   1.3;
+  --text-heading-md-line: 1.3;
   --text-heading-md-spacing: -0.01em;
 
   // body-lg  — Párrafos principales
-  --text-body-lg-size:   1rem;
+  --text-body-lg-size: 1rem;
   --text-body-lg-weight: 400;
-  --text-body-lg-line:   1.7;
+  --text-body-lg-line: 1.7;
 
   // body-sm  — UI secundaria, descripciones
-  --text-body-sm-size:   0.875rem;
+  --text-body-sm-size: 0.875rem;
   --text-body-sm-weight: 400;
-  --text-body-sm-line:   1.65;
+  --text-body-sm-line: 1.65;
 
   // label  — Badges, eyebrow, tags
-  --text-label-size:    0.7rem;
-  --text-label-weight:  600;
-  --text-label-line:    1;
+  --text-label-size: 0.7rem;
+  --text-label-weight: 600;
+  --text-label-line: 1;
   --text-label-spacing: 0.1em;
 
   // stat  — Números en dashboard
-  --text-stat-size:   clamp(1.5rem, 3vw, 2rem);
+  --text-stat-size: clamp(1.5rem, 3vw, 2rem);
   --text-stat-weight: 700;
-  --text-stat-line:   1;
+  --text-stat-line: 1;
 
   // ── ESPACIADO ─────────────────────────────────────────────
-  --space-xs:  0.25rem;
-  --space-sm:  0.5rem;
-  --space-md:  1rem;
-  --space-lg:  1.5rem;
-  --space-xl:  2rem;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
   --space-2xl: 3rem;
   --space-3xl: 5rem;
 
@@ -96,23 +95,23 @@
   --radius-pill: 999px;
 
   // ── SOMBRAS ───────────────────────────────────────────────
-  --shadow-sm: 0 1px 3px rgba(0,0,0,.25);
-  --shadow-md: 0 4px 16px rgba(0,0,0,.35);
-  --shadow-lg: 0 12px 40px rgba(0,0,0,.5);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
 // ── SCSS VARIABLES (para expresiones SCSS) ────────────────────
-$primary:       #1D9E75;
-$primary-light: #E1F5EE;
-$primary-dark:  #0F6E56;
-$stars:         #EF9F27;
-$danger:        #E24B4A;
-$info:          #185FA5;
-$ai:            #534AB7;
+$primary: #1d9e75;
+$primary-light: #e1f5ee;
+$primary-dark: #0f6e56;
+$stars: #ef9f27;
+$danger: #e24b4a;
+$info: #185fa5;
+$ai: #534ab7;
 
-$dark-bg:        #111111;
-$dark-surface:   #1A1A1A;
+$dark-bg: #111111;
+$dark-surface: #1a1a1a;
 $dark-surface-2: #222222;
-$dark-border:    rgba(255, 255, 255, 0.08);
-$dark-text:      #FFFFFF;
-$dark-muted:     rgba(255, 255, 255, 0.5);
+$dark-border: rgba(255, 255, 255, 0.08);
+$dark-text: #ffffff;
+$dark-muted: rgba(255, 255, 255, 0.5);

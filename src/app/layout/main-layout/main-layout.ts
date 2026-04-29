@@ -11,11 +11,13 @@ import { Navbar } from '../navbar/navbar';
       <router-outlet />
     </main>
   `,
-  styles: [`
-    .main-content {
-      min-height: calc(100vh - 64px);
-      background-color: var(--color-bg);
-    }
-  `],
+  styles: [
+    `
+      .main-content {
+        min-height: calc(100vh - 64px);
+        background-color: var(--color-bg);
+      }
+    `,
+  ],
 })
 export class MainLayout {}

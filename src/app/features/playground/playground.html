@@ -28,7 +28,11 @@
     </div>
 
     <div class="pg-props">
-      <div class="pg-prop"><span class="prop-name">variant</span><span class="prop-type">'easy' | 'mid' | 'hard' | 'ai' | 'primary' | 'neutral'</span><span class="prop-default">'neutral'</span></div>
+      <div class="pg-prop">
+        <span class="prop-name">variant</span
+        ><span class="prop-type">'easy' | 'mid' | 'hard' | 'ai' | 'primary' | 'neutral'</span
+        ><span class="prop-default">'neutral'</span>
+      </div>
     </div>
   </section>
 
@@ -67,16 +71,28 @@
     </div>
 
     <div class="pg-props">
-      <div class="pg-prop"><span class="prop-name">value</span><span class="prop-type">number</span><span class="prop-req">required</span></div>
-      <div class="pg-prop"><span class="prop-name">max</span><span class="prop-type">number</span><span class="prop-default">5</span></div>
-      <div class="pg-prop"><span class="prop-name">showValue</span><span class="prop-type">boolean</span><span class="prop-default">false</span></div>
+      <div class="pg-prop">
+        <span class="prop-name">value</span><span class="prop-type">number</span
+        ><span class="prop-req">required</span>
+      </div>
+      <div class="pg-prop">
+        <span class="prop-name">max</span><span class="prop-type">number</span
+        ><span class="prop-default">5</span>
+      </div>
+      <div class="pg-prop">
+        <span class="prop-name">showValue</span><span class="prop-type">boolean</span
+        ><span class="prop-default">false</span>
+      </div>
     </div>
   </section>
 
   <!-- ── STAR RATING — interactivo ─────────────────────────── -->
   <section class="pg-section">
     <h2 class="pg-section-title">StarRating — interactivo</h2>
-    <p class="pg-desc">Permite al usuario seleccionar una valoración. Hover animado. Úsalo en rate-exercise y rate-meal.</p>
+    <p class="pg-desc">
+      Permite al usuario seleccionar una valoración. Hover animado. Úsalo en rate-exercise y
+      rate-meal.
+    </p>
 
     <div class="pg-row align-items-start gap-5">
       <div>
@@ -110,8 +126,14 @@
     </div>
 
     <div class="pg-props">
-      <div class="pg-prop"><span class="prop-name">interactive</span><span class="prop-type">boolean</span><span class="prop-default">false</span></div>
-      <div class="pg-prop"><span class="prop-name">valueChange</span><span class="prop-type">output&lt;number&gt;</span><span class="prop-default">—</span></div>
+      <div class="pg-prop">
+        <span class="prop-name">interactive</span><span class="prop-type">boolean</span
+        ><span class="prop-default">false</span>
+      </div>
+      <div class="pg-prop">
+        <span class="prop-name">valueChange</span><span class="prop-type">output&lt;number&gt;</span
+        ><span class="prop-default">—</span>
+      </div>
     </div>
   </section>
 
@@ -121,8 +143,20 @@
     <p class="pg-desc">Barra de progreso para macronutrientes. Grid alineado automáticamente.</p>
 
     <div class="pg-demo-block">
-      <ff-macro-bar name="Proteínas" [current]="proteins()" [target]="165" unit="g" color="primary" />
-      <ff-macro-bar name="Carbohidratos" [current]="carbs()" [target]="260" unit="g" color="stars" />
+      <ff-macro-bar
+        name="Proteínas"
+        [current]="proteins()"
+        [target]="165"
+        unit="g"
+        color="primary"
+      />
+      <ff-macro-bar
+        name="Carbohidratos"
+        [current]="carbs()"
+        [target]="260"
+        unit="g"
+        color="stars"
+      />
       <ff-macro-bar name="Grasas" [current]="fats()" [target]="70" unit="g" color="danger" />
       <ff-macro-bar name="Fibra" [current]="22" unit="g" />
     </div>
@@ -138,11 +172,27 @@
     </div>
 
     <div class="pg-props">
-      <div class="pg-prop"><span class="prop-name">name</span><span class="prop-type">string</span><span class="prop-req">required</span></div>
-      <div class="pg-prop"><span class="prop-name">current</span><span class="prop-type">number</span><span class="prop-req">required</span></div>
-      <div class="pg-prop"><span class="prop-name">target</span><span class="prop-type">number | null</span><span class="prop-default">null</span></div>
-      <div class="pg-prop"><span class="prop-name">unit</span><span class="prop-type">string</span><span class="prop-default">'g'</span></div>
-      <div class="pg-prop"><span class="prop-name">color</span><span class="prop-type">'primary' | 'stars' | 'danger' | 'info'</span><span class="prop-default">'primary'</span></div>
+      <div class="pg-prop">
+        <span class="prop-name">name</span><span class="prop-type">string</span
+        ><span class="prop-req">required</span>
+      </div>
+      <div class="pg-prop">
+        <span class="prop-name">current</span><span class="prop-type">number</span
+        ><span class="prop-req">required</span>
+      </div>
+      <div class="pg-prop">
+        <span class="prop-name">target</span><span class="prop-type">number | null</span
+        ><span class="prop-default">null</span>
+      </div>
+      <div class="pg-prop">
+        <span class="prop-name">unit</span><span class="prop-type">string</span
+        ><span class="prop-default">'g'</span>
+      </div>
+      <div class="pg-prop">
+        <span class="prop-name">color</span
+        ><span class="prop-type">'primary' | 'stars' | 'danger' | 'info'</span
+        ><span class="prop-default">'primary'</span>
+      </div>
     </div>
   </section>
 
@@ -150,13 +200,27 @@
   <section class="pg-section">
     <h2 class="pg-section-title">Paleta de colores</h2>
     <div class="pg-colors">
-      <div class="pg-color-chip" style="background:#1D9E75"><span>Primary</span><code>#1D9E75</code></div>
-      <div class="pg-color-chip" style="background:#0F6E56"><span>Primary Dark</span><code>#0F6E56</code></div>
-      <div class="pg-color-chip pg-color-chip--dark" style="background:#E1F5EE; color:#0F6E56"><span>Primary Light</span><code>#E1F5EE</code></div>
-      <div class="pg-color-chip" style="background:#EF9F27"><span>Stars</span><code>#EF9F27</code></div>
-      <div class="pg-color-chip" style="background:#E24B4A"><span>Danger</span><code>#E24B4A</code></div>
-      <div class="pg-color-chip" style="background:#185FA5"><span>Info</span><code>#185FA5</code></div>
-      <div class="pg-color-chip" style="background:#534AB7"><span>AI</span><code>#534AB7</code></div>
+      <div class="pg-color-chip" style="background: #1d9e75">
+        <span>Primary</span><code>#1D9E75</code>
+      </div>
+      <div class="pg-color-chip" style="background: #0f6e56">
+        <span>Primary Dark</span><code>#0F6E56</code>
+      </div>
+      <div class="pg-color-chip pg-color-chip--dark" style="background: #e1f5ee; color: #0f6e56">
+        <span>Primary Light</span><code>#E1F5EE</code>
+      </div>
+      <div class="pg-color-chip" style="background: #ef9f27">
+        <span>Stars</span><code>#EF9F27</code>
+      </div>
+      <div class="pg-color-chip" style="background: #e24b4a">
+        <span>Danger</span><code>#E24B4A</code>
+      </div>
+      <div class="pg-color-chip" style="background: #185fa5">
+        <span>Info</span><code>#185FA5</code>
+      </div>
+      <div class="pg-color-chip" style="background: #534ab7">
+        <span>AI</span><code>#534AB7</code>
+      </div>
     </div>
   </section>
 
@@ -194,5 +258,4 @@
       </div>
     </div>
   </section>
-
 </div>

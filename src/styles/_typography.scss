@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
 
 // ── BASE ──────────────────────────────────────────────────────
 body {
@@ -76,14 +76,32 @@ body {
 }
 
 // ── OVERRIDES HTML ELEMENTS ───────────────────────────────────
-h1 { @extend .text-heading-xl; }
-h2 { @extend .text-heading-lg; }
-h3 { @extend .text-heading-md; }
+h1 {
+  @extend .text-heading-xl;
+}
+h2 {
+  @extend .text-heading-lg;
+}
+h3 {
+  @extend .text-heading-md;
+}
 
 // ── UTILIDADES DE COLOR ───────────────────────────────────────
-.text-primary   { color: var(--color-primary)  !important; }
-.text-muted-ff  { color: var(--color-text-muted) !important; }
-.text-stars     { color: var(--color-stars)    !important; }
-.text-danger-ff { color: var(--color-danger)   !important; }
-.text-ai        { color: var(--color-ai)        !important; }
-.text-info-ff   { color: var(--color-info)      !important; }
+.text-primary {
+  color: var(--color-primary) !important;
+}
+.text-muted-ff {
+  color: var(--color-text-muted) !important;
+}
+.text-stars {
+  color: var(--color-stars) !important;
+}
+.text-danger-ff {
+  color: var(--color-danger) !important;
+}
+.text-ai {
+  color: var(--color-ai) !important;
+}
+.text-info-ff {
+  color: var(--color-info) !important;
+}
