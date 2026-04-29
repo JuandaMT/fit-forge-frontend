@@ -28,8 +28,20 @@ import { Sidebar } from '../sidebar/sidebar';
         </header>
 
         <!-- Mobile overlay panel -->
-        <div class="mob-overlay" [class.is-open]="mobileOpen()" (click)="closeMobile()">
-          <nav class="mob-panel" [class.is-open]="mobileOpen()" (click)="$event.stopPropagation()">
+        <div
+          class="mob-overlay"
+          [class.is-open]="mobileOpen()"
+          (click)="closeMobile()"
+          tabindex="0"
+          (keydown.enter)="closeMobile()"
+        >
+          <nav
+            class="mob-panel"
+            [class.is-open]="mobileOpen()"
+            (click)="$event.stopPropagation()"
+            tabindex="0"
+            (keydown.enter)="$event.stopPropagation()"
+          >
             <!-- Principal -->
             <div class="mob-group">PRINCIPAL</div>
             <a
