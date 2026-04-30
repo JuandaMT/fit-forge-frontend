@@ -1,0 +1,202 @@
+:host {
+  display: block;
+  padding: var(--space-xl) var(--space-xl) var(--space-3xl);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+// ── Header ────────────────────────────────────────────────────────────────────
+
+.rc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-xl);
+  gap: var(--space-md);
+}
+
+.rc-title {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-lg-size);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.rc-subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--text-body-sm-size);
+  margin: 0.25rem 0 0;
+}
+
+// ── KPIs ──────────────────────────────────────────────────────────────────────
+
+.rc-kpis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+
+  @media (max-width: 575px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Filtros ───────────────────────────────────────────────────────────────────
+
+.rc-filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.rc-search {
+  flex: 1;
+  min-width: 200px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 0.55rem 0.9rem;
+  color: var(--color-text);
+  font-size: var(--text-body-sm-size);
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.15s;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  &:focus {
+    border-color: var(--color-primary);
+  }
+}
+
+.rc-level-pills {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.rc-pill {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  font-size: var(--text-body-sm-size);
+  font-family: var(--font-body);
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    color 0.15s,
+    background 0.15s;
+
+  &:hover {
+    border-color: var(--color-primary);
+    color: var(--color-text);
+  }
+
+  &--active {
+    background: rgba(29, 158, 117, 0.12);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+}
+
+// ── Grid ──────────────────────────────────────────────────────────────────────
+
+.rc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-lg);
+}
+
+.rc-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+
+  &:hover {
+    border-color: rgba(29, 158, 117, 0.35);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.rc-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.rc-card-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.rc-card-category {
+  font-size: var(--text-label-size);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.rc-card-desc {
+  font-size: var(--text-body-sm-size);
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.rc-card-meta {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  margin-top: var(--space-xs);
+}
+
+.rc-meta-item {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.rc-meta-icon {
+  font-size: 0.85rem;
+}
+
+.rc-card-btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+// ── Empty state ────────────────────────────────────────────────────────────────
+
+.rc-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: var(--space-3xl) 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-body-sm-size);
+}

@@ -1,0 +1,77 @@
+<!-- ── HEADER ──────────────────────────────────────────────────── -->
+<header class="rc-header">
+  <div>
+    <h1 class="rc-title">Rutinas</h1>
+    <p class="rc-subtitle">Explora y asígnate la rutina que mejor se adapta a tu objetivo</p>
+  </div>
+</header>
+
+<!-- ── KPIs ────────────────────────────────────────────────────── -->
+<section class="rc-kpis">
+  @for (kpi of kpis; track kpi.label) {
+    <ff-stat-tile
+      [label]="kpi.label"
+      [value]="kpi.value"
+      [unit]="kpi.unit"
+      [hint]="kpi.hint"
+      [tone]="kpi.tone"
+    />
+  }
+</section>
+
+<!-- ── FILTROS ─────────────────────────────────────────────────── -->
+<div class="rc-filters">
+  <input
+    class="rc-search"
+    type="text"
+    placeholder="Buscar rutina..."
+    [value]="search()"
+    (input)="search.set($any($event.target).value)"
+  />
+  <div class="rc-level-pills">
+    @for (l of levels; track l.value) {
+      <button
+        class="rc-pill"
+        [class.rc-pill--active]="levelFilter() === l.value"
+        (click)="setLevel(l.value)"
+      >
+        {{ l.label }}
+      </button>
+    }
+  </div>
+</div>
+
+<!-- ── GRID ────────────────────────────────────────────────────── -->
+<section class="rc-grid">
+  @for (r of filtered(); track r.id) {
+    <div class="rc-card">
+      <div class="rc-card-head">
+        <h3 class="rc-card-name">{{ r.name }}</h3>
+        <ff-badge [variant]="r.level">{{ levelLabel(r.level) }}</ff-badge>
+      </div>
+      <span class="rc-card-category">{{ r.category }}</span>
+      <p class="rc-card-desc">{{ r.description }}</p>
+      <div class="rc-card-meta">
+        <span class="rc-meta-item">
+          <span class="rc-meta-icon">📅</span> {{ r.daysPerWeek }} días/sem
+        </span>
+        <span class="rc-meta-item">
+          <span class="rc-meta-icon">⏱</span> {{ r.durationMin }} min
+        </span>
+        <span class="rc-meta-item">
+          <span class="rc-meta-icon">💪</span> {{ r.exerciseCount }} ejercicios
+        </span>
+      </div>
+      <a
+        [routerLink]="['/workouts/routines', r.id]"
+        class="btn btn-ff-secondary btn-sm rc-card-btn"
+      >
+        Ver rutina →
+      </a>
+    </div>
+  } @empty {
+    <div class="rc-empty">
+      <p>No se encontraron rutinas con esos filtros.</p>
+    </div>
+  }
+</section>
