@@ -1,0 +1,146 @@
+:host {
+  display: block;
+  padding: var(--space-xl) var(--space-xl) var(--space-3xl);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+// ── Hero ──────────────────────────────────────────────────────────────────────
+
+.ss-hero {
+  text-align: center;
+  background: linear-gradient(135deg, rgba(29, 158, 117, 0.15), rgba(29, 158, 117, 0.04));
+  border: 1px solid rgba(29, 158, 117, 0.25);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl) var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.ss-hero-icon {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+}
+
+.ss-hero-title {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-lg-size);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0 0 0.4rem;
+}
+
+.ss-hero-sub {
+  color: var(--color-text-muted);
+  font-size: var(--text-body-sm-size);
+  margin: 0;
+}
+
+// ── KPIs ──────────────────────────────────────────────────────────────────────
+
+.ss-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Ejercicios ────────────────────────────────────────────────────────────────
+
+.ss-exercises-card {
+  display: block;
+  margin-bottom: var(--space-lg);
+}
+
+.ss-ex-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-border);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.ss-ex-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ss-ex-name {
+  font-weight: 600;
+  font-size: var(--text-body-lg-size);
+  color: var(--color-text);
+}
+
+.ss-ex-sets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ss-ex-set {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  background: var(--color-surface-2);
+  border-radius: var(--radius-sm);
+  padding: 0.1rem 0.4rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.ss-ex-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+// ── Récords ───────────────────────────────────────────────────────────────────
+
+.ss-pbs-card {
+  display: block;
+  margin-bottom: var(--space-lg);
+}
+
+.ss-pb-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.ss-pb-icon {
+  font-size: 1rem;
+}
+
+.ss-pb-text {
+  font-size: var(--text-body-sm-size);
+  color: var(--color-text);
+}
+
+// ── Acciones ──────────────────────────────────────────────────────────────────
+
+.ss-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  flex-wrap: wrap;
+}
