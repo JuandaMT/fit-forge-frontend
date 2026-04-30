@@ -1,0 +1,92 @@
+<!-- ── HEADER ──────────────────────────────────────────────────── -->
+<header class="as-header">
+  <div class="as-header-left">
+    <h1 class="as-title">{{ routineName() }}</h1>
+    <span class="as-timer">⏱ {{ elapsedLabel() }}</span>
+  </div>
+  <div class="as-header-right">
+    <div class="as-progress-wrap">
+      <span class="as-progress-label">{{ completedSets() }} / {{ totalSets() }} series</span>
+      <div class="as-progress-track">
+        <div class="as-progress-fill" [style.width.%]="progress()"></div>
+      </div>
+    </div>
+    <a routerLink="/workouts/sessions/1/summary" class="btn btn-ff-primary">Finalizar sesión</a>
+  </div>
+</header>
+
+<!-- ── EJERCICIOS ──────────────────────────────────────────────── -->
+<section class="as-exercises">
+  @for (ex of exercises(); track ex.exerciseId; let exIdx = $index) {
+    <div class="as-exercise-block" [class.as-exercise-block--done]="allDone(ex)">
+      <!-- Cabecera del ejercicio -->
+      <div class="as-ex-head">
+        <div>
+          <h3 class="as-ex-name">{{ ex.name }}</h3>
+          <div class="as-ex-meta">
+            <ff-badge variant="neutral">{{ muscleLabel[ex.muscleGroup] }}</ff-badge>
+            <span class="as-ex-target">Objetivo: {{ ex.targetSets }} × {{ ex.targetReps }}</span>
+          </div>
+        </div>
+        @if (allDone(ex)) {
+          <span class="as-ex-check">✓</span>
+        }
+      </div>
+
+      <!-- Cabecera de columnas -->
+      <div class="as-set-header">
+        <span>Serie</span>
+        <span>Reps</span>
+        <span>Peso (kg)</span>
+        <span>Hecho</span>
+      </div>
+
+      <!-- Series -->
+      @for (set of ex.sets; track set.setNumber; let setIdx = $index) {
+        <div class="as-set-row" [class.as-set-row--done]="set.done">
+          <span class="as-set-num">{{ set.setNumber }}</span>
+          <input
+            class="as-set-input"
+            type="number"
+            min="0"
+            placeholder="—"
+            [value]="set.reps ?? ''"
+            (input)="updateReps(exIdx, setIdx, $any($event.target).value)"
+            [disabled]="set.done"
+          />
+          <input
+            class="as-set-input"
+            type="number"
+            min="0"
+            step="0.5"
+            [value]="set.weight"
+            (input)="updateWeight(exIdx, setIdx, $any($event.target).value)"
+            [disabled]="set.done"
+          />
+          <button
+            class="as-check-btn"
+            [class.as-check-btn--done]="set.done"
+            (click)="toggleSet(exIdx, setIdx)"
+            [attr.aria-label]="set.done ? 'Desmarcar serie' : 'Marcar serie como completada'"
+          >
+            {{ set.done ? '✓' : '○' }}
+          </button>
+        </div>
+      }
+
+      <!-- Añadir serie -->
+      <button class="as-add-set" (click)="addSet(exIdx)">+ Añadir serie</button>
+
+      <!-- Valoración -->
+      <div class="as-rating-row">
+        <span class="as-rating-label">Valorar ejercicio</span>
+        <ff-star-rating
+          [value]="ex.rating"
+          [interactive]="true"
+          [showValue]="ex.rating > 0"
+          (valueChange)="updateRating(exIdx, $event)"
+        />
+      </div>
+    </div>
+  }
+</section>
