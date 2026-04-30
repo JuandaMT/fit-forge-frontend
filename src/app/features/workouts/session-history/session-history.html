@@ -1,0 +1,148 @@
+<!-- ── HEADER ──────────────────────────────────────────────────── -->
+<header class="sh-header">
+  <div>
+    <h1 class="sh-title">Mis rutinas</h1>
+    <p class="sh-subtitle">Tu semana de entrenamiento</p>
+  </div>
+</header>
+
+<!-- ── CALENDARIO SEMANAL ──────────────────────────────────────── -->
+<section class="sh-week">
+  @for (day of schedule(); track day.dayLabel) {
+    <button
+      class="sh-day"
+      [class.sh-day--today]="day.isToday"
+      [class.sh-day--rest]="day.isRest"
+      [class.sh-day--selected]="selectedDayLabel() === day.dayLabel"
+      [class.sh-day--completed]="day.completed"
+      (click)="toggleDay(day.dayLabel)"
+      type="button"
+    >
+      <div class="sh-day-label">{{ day.dayLabel }}</div>
+      <div class="sh-day-num">
+        {{ dayNumber(day.date) }}
+        @if (day.completed) {
+          <span class="sh-day-check" aria-label="Completado">✓</span>
+        }
+      </div>
+
+      @if (day.routine) {
+        <div class="sh-day-routine">{{ day.routine.name }}</div>
+      } @else {
+        <div class="sh-day-rest">Descanso</div>
+      }
+
+      <div class="sh-day-chevron">
+        {{ selectedDayLabel() === day.dayLabel ? '▲' : '▼' }}
+      </div>
+    </button>
+  }
+</section>
+
+<!-- ── DETALLE DÍA SELECCIONADO ─────────────────────────────────── -->
+@if (selectedDay(); as day) {
+  <div class="sh-day-detail">
+    @if (day.routine && selectedRoutine(); as routine) {
+      <div class="sh-detail-header">
+        <div class="sh-detail-info">
+          <div class="sh-detail-day-label">{{ day.dayLabel }} {{ dayNumber(day.date) }}</div>
+          <h2 class="sh-detail-name">{{ routine.name }}</h2>
+          <div class="sh-detail-badges">
+            <ff-badge [variant]="routine.level">
+              {{ routine.level === 'easy' ? 'Fácil' : routine.level === 'mid' ? 'Medio' : 'Duro' }}
+            </ff-badge>
+            <span class="sh-detail-category">{{ routine.category }}</span>
+          </div>
+        </div>
+        @if (day.completed) {
+          <button class="btn btn-ff-primary sh-btn-completed" disabled type="button">
+            ✓ Completado
+          </button>
+        } @else {
+          <a
+            class="btn btn-ff-primary"
+            [routerLink]="['/workouts/sessions/new']"
+            [queryParams]="{ routineId: day.routine.id }"
+          >
+            ▶ Comenzar sesión
+          </a>
+        }
+      </div>
+
+      <p class="sh-detail-desc">{{ routine.description }}</p>
+
+      <div class="sh-detail-meta">
+        <span>📅 {{ routine.daysPerWeek }} días/sem</span>
+        <span>⏱ {{ routine.durationMin }} min</span>
+        <span>💪 {{ routine.exerciseCount }} ejercicios</span>
+      </div>
+
+      <ul class="sh-detail-exercises">
+        @for (ex of routine.exercises; track ex.exerciseId; let i = $index) {
+          <li class="sh-detail-ex">
+            <span class="sh-detail-ex-num">{{ i + 1 }}</span>
+            <span class="sh-detail-ex-name">{{ ex.name }}</span>
+            <span class="sh-detail-ex-sets">{{ ex.sets }} × {{ ex.reps }}</span>
+          </li>
+        }
+      </ul>
+    } @else {
+      <div class="sh-detail-rest">
+        <span class="sh-detail-rest-icon">😴</span>
+        <div>
+          <strong>Día de descanso</strong>
+          <p>El cuerpo también necesita recuperarse. Descansa y vuelve con más energía.</p>
+        </div>
+      </div>
+    }
+  </div>
+}
+
+<!-- ── FILTROS HISTORIAL ────────────────────────────────────────── -->
+<div class="sh-history-header">
+  <h2 class="sh-history-title">Historial de sesiones</h2>
+  <div class="sh-range-pills">
+    @for (r of ranges; track r.value) {
+      <button
+        class="sh-pill"
+        [class.sh-pill--active]="rangeFilter() === r.value"
+        (click)="rangeFilter.set(r.value)"
+      >
+        {{ r.label }}
+      </button>
+    }
+  </div>
+</div>
+
+<!-- ── LISTA ───────────────────────────────────────────────────── -->
+<ff-section-card title="Sesiones">
+  @for (s of filtered(); track s.id) {
+    <div class="sh-row">
+      <div class="sh-row-left">
+        <span class="sh-date">{{ daysAgoLabel(s.daysAgo) }}</span>
+        <span class="sh-date-abs">{{ s.date }}</span>
+      </div>
+      <div class="sh-row-main">
+        <span class="sh-name">{{ s.routineName }}</span>
+        <div class="sh-meta">
+          <span>⏱ {{ s.durationMin }} min</span>
+          <span>💪 {{ s.exerciseCount }} ejercicios</span>
+          @if (s.totalVolume > 0) {
+            <span>⬆ {{ s.totalVolume }} kg</span>
+          }
+        </div>
+      </div>
+      <div class="sh-row-right">
+        <ff-star-rating [value]="s.rating" [showValue]="true" />
+        <a
+          [routerLink]="['/workouts/sessions', s.id, 'summary']"
+          class="btn btn-ff-secondary btn-sm"
+        >
+          Ver resumen
+        </a>
+      </div>
+    </div>
+  } @empty {
+    <p class="sh-empty">No hay sesiones en este período.</p>
+  }
+</ff-section-card>
