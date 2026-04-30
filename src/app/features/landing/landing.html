@@ -11,10 +11,12 @@
     </nav>
 
     <div class="d-flex gap-2 align-items-center">
-      <a routerLink="/login"    class="btn l-btn-ghost l-nav-auth">Iniciar sesión</a>
+      <a routerLink="/login" class="btn l-btn-ghost l-nav-auth">Iniciar sesión</a>
       <a routerLink="/register" class="btn l-btn-solid l-nav-auth">Registrarse</a>
       <!-- Hamburger for mobile -->
-      <button class="l-menu-toggle" (click)="menuOpen = !menuOpen" aria-label="Abrir menú">☰</button>
+      <button class="l-menu-toggle" (click)="menuOpen = !menuOpen" aria-label="Abrir menú">
+        ☰
+      </button>
     </div>
   </div>
 
@@ -32,7 +34,6 @@
 <section class="l-hero">
   <div class="l-container">
     <div class="l-hero-row">
-
       <!-- Left -->
       <div class="l-hero-left">
         <span class="l-pill mb-4 d-inline-block">TU COMPAÑERO DE FITNESS</span>
@@ -122,34 +123,148 @@
 
     <div class="l-feat-grid">
       <div class="l-feat-card">
-        <div class="l-feat-icon">☰</div>
+        <div class="l-feat-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+            <path d="M12 11h4" />
+            <path d="M12 16h4" />
+            <path d="M8 11h.01" />
+            <path d="M8 16h.01" />
+          </svg>
+        </div>
         <h3 class="l-feat-title">Rutinas predefinidas</h3>
-        <p class="l-feat-desc">Accede a rutinas diseñadas por objetivo. Beginner, intermedio o avanzado según tu meta.</p>
+        <p class="l-feat-desc">
+          Accede a rutinas diseñadas por objetivo. Beginner, intermedio o avanzado según tu meta.
+        </p>
       </div>
       <div class="l-feat-card">
-        <div class="l-feat-icon" style="color: var(--color-stars)">⏱</div>
+        <div class="l-feat-icon" style="color: var(--color-stars)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="10" x2="14" y1="2" y2="2" />
+            <line x1="12" x2="15" y1="14" y2="11" />
+            <circle cx="12" cy="14" r="8" />
+          </svg>
+        </div>
         <h3 class="l-feat-title">Tracking en tiempo real</h3>
-        <p class="l-feat-desc">Registra series, reps y peso por ejercicio. Valora cómo te has sentido con 1-5 estrellas.</p>
+        <p class="l-feat-desc">
+          Registra series, reps y peso por ejercicio. Valora cómo te has sentido con 1-5 estrellas.
+        </p>
       </div>
       <div class="l-feat-card">
-        <div class="l-feat-icon" style="color: var(--color-info)">📈</div>
+        <div class="l-feat-icon" style="color: var(--color-info)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+            <polyline points="16 7 22 7 22 13" />
+          </svg>
+        </div>
         <h3 class="l-feat-title">Estadísticas de progreso</h3>
-        <p class="l-feat-desc">Visualiza tu evolución con gráficas de peso, rendimiento y adherencia a la dieta.</p>
+        <p class="l-feat-desc">
+          Visualiza tu evolución con gráficas de peso, rendimiento y adherencia a la dieta.
+        </p>
       </div>
       <div class="l-feat-card">
-        <div class="l-feat-icon" style="color: var(--color-danger)">🥗</div>
+        <div class="l-feat-icon" style="color: var(--color-danger)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+            <path d="M7 2v20" />
+            <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+          </svg>
+        </div>
         <h3 class="l-feat-title">Seguimiento de dieta</h3>
-        <p class="l-feat-desc">Registra tus comidas, valora cada comida e identifica qué dieta funciona mejor para ti.</p>
+        <p class="l-feat-desc">
+          Registra tus comidas, valora cada comida e identifica qué dieta funciona mejor para ti.
+        </p>
       </div>
       <div class="l-feat-card">
-        <div class="l-feat-icon" style="color: var(--color-ai)">✨</div>
+        <div class="l-feat-icon" style="color: var(--color-ai)">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"
+            />
+            <path d="M5 3v4" />
+            <path d="M19 17v4" />
+            <path d="M3 5h4" />
+            <path d="M17 19h4" />
+          </svg>
+        </div>
         <h3 class="l-feat-title">Recomendaciones IA</h3>
-        <p class="l-feat-desc">El sistema analiza tus valoraciones y sugiere ajustes de peso, rutinas y dietas de forma dinámica.</p>
+        <p class="l-feat-desc">
+          El sistema analiza tus valoraciones y sugiere ajustes de peso, rutinas y dietas de forma
+          dinámica.
+        </p>
       </div>
       <div class="l-feat-card">
-        <div class="l-feat-icon">👤</div>
+        <div class="l-feat-icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </div>
         <h3 class="l-feat-title">Perfil personalizado</h3>
-        <p class="l-feat-desc">Define tu objetivo, peso y altura. FitForge te asigna la rutina y dieta más adecuada.</p>
+        <p class="l-feat-desc">
+          Define tu objetivo, peso y altura. FitForge te asigna la rutina y dieta más adecuada.
+        </p>
       </div>
     </div>
 
@@ -163,11 +278,10 @@
 <section class="l-how">
   <div class="l-container">
     <div class="l-how-row">
-
       <!-- Left: steps -->
       <div class="l-how-left">
         <p class="l-section-label">CÓMO FUNCIONA</p>
-        <h2 class="l-section-title">Del registro a la<br>recomendación</h2>
+        <h2 class="l-section-title">Del registro a la<br />recomendación</h2>
         <p class="l-section-sub mb-4">Cuatro pasos simples para que el sistema aprenda de ti.</p>
 
         <div class="l-steps">

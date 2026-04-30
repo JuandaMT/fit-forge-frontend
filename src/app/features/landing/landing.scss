@@ -474,7 +474,7 @@ $dark-muted: rgba(255, 255, 255, 0.5);
 
 .l-how-row {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 3rem;
 }
 
@@ -487,7 +487,6 @@ $dark-muted: rgba(255, 255, 255, 0.5);
   flex: 1;
   display: flex;
   justify-content: flex-end;
-  margin-top: 10.5rem;
 }
 
 .l-steps {
@@ -655,7 +654,6 @@ $dark-muted: rgba(255, 255, 255, 0.5);
 
 // ── Tablet (≤ 991px) ──────────────────────────────────────────
 @media (max-width: 991px) {
-
   // Navbar — show hamburger, hide desktop nav
   .l-menu-toggle {
     display: block;
