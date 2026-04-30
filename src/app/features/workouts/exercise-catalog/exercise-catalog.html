@@ -1,0 +1,53 @@
+<!-- ── HEADER ──────────────────────────────────────────────────── -->
+<header class="ec-header">
+  <div>
+    <h1 class="ec-title">Ejercicios</h1>
+    <p class="ec-subtitle">Biblioteca completa de movimientos</p>
+  </div>
+  <input
+    class="ec-search"
+    type="text"
+    placeholder="Buscar ejercicio..."
+    [value]="search()"
+    (input)="search.set($any($event.target).value)"
+  />
+</header>
+
+<!-- ── FILTROS GRUPO MUSCULAR ──────────────────────────────────── -->
+<div class="ec-muscle-pills">
+  @for (g of muscleGroups; track g.value) {
+    <button
+      class="ec-pill"
+      [class.ec-pill--active]="muscleFilter() === g.value"
+      (click)="muscleFilter.set(g.value)"
+    >
+      {{ g.label }}
+    </button>
+  }
+</div>
+
+<!-- ── GRID ────────────────────────────────────────────────────── -->
+<section class="ec-grid">
+  @for (ex of filtered(); track ex.id) {
+    <div class="ec-card">
+      <div class="ec-card-head">
+        <h3 class="ec-card-name">{{ ex.name }}</h3>
+        <ff-badge [variant]="ex.difficulty">{{ diffLabel(ex.difficulty) }}</ff-badge>
+      </div>
+      <div class="ec-card-tags">
+        <ff-badge variant="neutral">{{ muscleLabel[ex.muscleGroup] }}</ff-badge>
+        <span class="ec-equipment">{{ ex.equipment }}</span>
+      </div>
+      <div class="ec-card-footer">
+        <ff-star-rating [value]="ex.avgRating" [showValue]="true" />
+        <a [routerLink]="['/workouts/exercises', ex.id]" class="btn btn-ff-secondary btn-sm">
+          Ver ejercicio →
+        </a>
+      </div>
+    </div>
+  } @empty {
+    <div class="ec-empty">
+      <p>No se encontraron ejercicios con esos filtros.</p>
+    </div>
+  }
+</section>
