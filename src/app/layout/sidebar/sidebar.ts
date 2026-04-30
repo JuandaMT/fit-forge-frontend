@@ -29,7 +29,12 @@ import { AuthService } from '../../core/services/auth.service';
 
       <!-- Entreno -->
       <div class="sb-group-label">ENTRENO</div>
-      <a routerLink="/workouts" routerLinkActive="sb-active" class="sb-link">
+      <a
+        routerLink="/workouts"
+        routerLinkActive="sb-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="sb-link"
+      >
         <span class="sb-icon">🏋️</span>
         Entrenamientos
         <span class="sb-badge">3</span>
