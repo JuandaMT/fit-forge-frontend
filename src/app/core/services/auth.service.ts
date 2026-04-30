@@ -18,6 +18,17 @@ export class AuthService {
   private readonly TOKEN_KEY = 'token';
   readonly isLoggedIn = signal(this.hasValidToken());
 
+  register(data: {
+    username: string;
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    goalType: string;
+  }) {
+    return this.http.post(`${environment.apiUrl}/auth/register`, data);
+  }
+
   login(email: string, password: string) {
     return this.http
       .post<{ token: string }>(`${environment.apiUrl}/auth/login`, { email, password })
