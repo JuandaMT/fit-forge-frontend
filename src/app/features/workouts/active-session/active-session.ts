@@ -1,5 +1,6 @@
-import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, DestroyRef, computed, inject, signal, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { lastValueFrom } from 'rxjs';
 import { Badge } from '../../../shared/components/badge/badge';
 import { StarRating } from '../../../shared/components/star-rating/star-rating';
 import { ActiveExercise, ActiveSet } from '../models/workouts.models';
@@ -11,10 +12,11 @@ import { WorkoutsService } from '../services/workouts.service';
   templateUrl: './active-session.html',
   styleUrl: './active-session.scss',
 })
-export class ActiveSession {
+export class ActiveSession implements OnInit {
   private readonly ws = inject(WorkoutsService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   private readonly routineId = this.route.snapshot.queryParamMap.get('routineId');
   private readonly sessionData = this.ws.getActiveSession(this.routineId);
@@ -23,6 +25,8 @@ export class ActiveSession {
   readonly exercises = signal<ActiveExercise[]>(structuredClone(this.sessionData().exercises));
 
   readonly elapsedSec = signal(0);
+  readonly sessionId = signal<number | null>(null);
+  readonly isSaving = signal(false);
 
   readonly completedSets = computed(() =>
     this.exercises().reduce((acc, ex) => acc + ex.sets.filter((s) => s.done).length, 0),
@@ -57,6 +61,68 @@ export class ActiveSession {
   constructor() {
     const interval = setInterval(() => this.elapsedSec.update((s) => s + 1), 1000);
     this.destroyRef.onDestroy(() => clearInterval(interval));
+  }
+
+  ngOnInit() {
+    const rId = this.routineId ? parseInt(this.routineId, 10) : undefined;
+    this.ws.createSession(rId).subscribe({
+      next: (res) => this.sessionId.set(res.id),
+      error: (err) => console.error('Failed to create session in backend:', err),
+    });
+  }
+
+  async finishSession() {
+    const sId = this.sessionId();
+    if (!sId) {
+      console.warn('No session ID available to save. Navigating to summary fallback.');
+      this.router.navigate(['/workouts/sessions/1/summary']);
+      return;
+    }
+
+    this.isSaving.set(true);
+    try {
+      for (let i = 0; i < this.exercises().length; i++) {
+        const ex = this.exercises()[i];
+        const doneSets = ex.sets.filter((s) => s.done);
+
+        if (doneSets.length > 0) {
+          const exRes = await lastValueFrom(
+            this.ws.addExerciseToSession(sId, parseInt(ex.exerciseId, 10), i),
+          );
+          const sessionExerciseId = exRes.id;
+
+          for (const set of doneSets) {
+            await lastValueFrom(
+              this.ws.addSetToExercise(
+                sId,
+                sessionExerciseId,
+                set.setNumber,
+                set.reps,
+                set.weight || '0',
+              ),
+            );
+          }
+
+          if (ex.rating > 0) {
+            const difficulty = ex.rating;
+            const enjoyment = ex.rating;
+            await lastValueFrom(
+              this.ws.rateSessionExercise(sId, sessionExerciseId, enjoyment, difficulty),
+            );
+          }
+        }
+      }
+
+      const durationMin = Math.floor(this.elapsedSec() / 60);
+      await lastValueFrom(this.ws.finishSession(sId, durationMin, 'good'));
+
+      this.router.navigate(['/workouts/sessions', sId, 'summary']);
+    } catch (err) {
+      console.error('Error saving session:', err);
+      alert('Hubo un error al guardar la sesión. Revisa la consola.');
+    } finally {
+      this.isSaving.set(false);
+    }
   }
 
   toggleSet(exIdx: number, setIdx: number) {

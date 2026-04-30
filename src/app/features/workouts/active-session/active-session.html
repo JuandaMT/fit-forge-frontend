@@ -11,7 +11,9 @@
         <div class="as-progress-fill" [style.width.%]="progress()"></div>
       </div>
     </div>
-    <a routerLink="/workouts/sessions/1/summary" class="btn btn-ff-primary">Finalizar sesión</a>
+    <button (click)="finishSession()" class="btn btn-ff-primary" [disabled]="isSaving()">
+      {{ isSaving() ? 'Guardando...' : 'Finalizar sesión' }}
+    </button>
   </div>
 </header>
 
