@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-placeholder',
-  template:
-    '<div class="container py-4"><h2>Registro</h2><p class="text-muted">Próximamente...</p></div>',
+  selector: 'app-register',
+  imports: [RouterLink],
+  templateUrl: './register.html',
+  styleUrl: './register.scss',
 })
 export class Register {}
