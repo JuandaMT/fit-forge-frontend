@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Background: rounded square in brand primary -->
+  <rect width="32" height="32" rx="7" fill="#1D9E75"/>
+
+  <!-- Letter "F" — bold lettermark -->
+  <!-- Vertical stem -->
+  <rect x="8" y="7" width="5" height="18" fill="white"/>
+  <!-- Top horizontal bar -->
+  <rect x="8" y="7" width="16" height="4.5" fill="white"/>
+  <!-- Middle horizontal bar (slightly shorter) -->
+  <rect x="8" y="15.5" width="11.5" height="4" fill="white"/>
+</svg>
