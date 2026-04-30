@@ -1,8 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Badge } from '../../../shared/components/badge/badge';
+import { SectionCard } from '../../../shared/components/section-card/section-card';
+import { StatTile } from '../../../shared/components/stat-tile/stat-tile';
+import { WorkoutsService } from '../services/workouts.service';
 
 @Component({
-  selector: 'app-placeholder',
-  template:
-    '<div class="container py-4"><h2>Detalle de rutina</h2><p class="text-muted">Próximamente...</p></div>',
+  selector: 'app-routine-detail',
+  imports: [RouterLink, Badge, SectionCard, StatTile],
+  templateUrl: './routine-detail.html',
+  styleUrl: './routine-detail.scss',
 })
-export class RoutineDetail {}
+export class RoutineDetail {
+  readonly id = input<string>('1');
+
+  private readonly ws = inject(WorkoutsService);
+  readonly routine = this.ws.getRoutineById(this.id());
+
+  levelLabel(level: string): string {
+    const map: Record<string, string> = { easy: 'Fácil', mid: 'Medio', hard: 'Duro' };
+    return map[level] ?? level;
+  }
+
+  formatRest(sec: number): string {
+    if (sec < 60) return `${sec}s`;
+    return `${Math.floor(sec / 60)}min ${sec % 60 ? (sec % 60) + 's' : ''}`.trim();
+  }
+}

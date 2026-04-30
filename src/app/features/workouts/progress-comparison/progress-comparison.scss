@@ -1,0 +1,181 @@
+:host {
+  display: block;
+  padding: var(--space-xl) var(--space-xl) var(--space-3xl);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pc-header {
+  margin-bottom: var(--space-xl);
+}
+
+.pc-title {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-lg-size);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.pc-subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--text-body-sm-size);
+  margin: 0.25rem 0 0;
+}
+
+// ── KPIs ──────────────────────────────────────────────────────────────────────
+
+.pc-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ── Gráfico ───────────────────────────────────────────────────────────────────
+
+.pc-chart-card {
+  display: block;
+  margin-bottom: var(--space-lg);
+}
+
+.pc-chart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.pc-chart-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+.pc-exercise-pills {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.pc-pill {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  font-size: 0.72rem;
+  font-family: var(--font-body);
+  padding: 0.25rem 0.7rem;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    color 0.15s,
+    background 0.15s;
+
+  &:hover {
+    border-color: var(--color-primary);
+    color: var(--color-text);
+  }
+  &--active {
+    background: rgba(29, 158, 117, 0.12);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+}
+
+.pc-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-sm);
+  height: 160px;
+}
+
+.pc-chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  height: 100%;
+}
+
+.pc-bar-value {
+  font-size: 0.6rem;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.pc-bar-wrapper {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.pc-bar {
+  width: 100%;
+  background: var(--color-primary);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  min-height: 4px;
+  transition: height 0.4s;
+  opacity: 0.85;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.pc-bar-label {
+  font-size: 0.6rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-align: center;
+}
+
+// ── Progreso por ejercicio ────────────────────────────────────────────────────
+
+.pc-progress-card {
+  display: block;
+}
+
+.pc-progress-row {
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-border);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.pc-progress-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.pc-progress-name {
+  font-size: var(--text-body-sm-size);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.pc-progress-delta {
+  font-size: var(--text-body-sm-size);
+  color: var(--color-primary);
+  font-weight: 600;
+}

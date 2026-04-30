@@ -1,0 +1,74 @@
+<!-- ── BREADCRUMB ───────────────────────────────────────────────── -->
+<nav class="ed-breadcrumb">
+  <a routerLink="/workouts/exercises" class="ed-bc-link">Ejercicios</a>
+  <span class="ed-bc-sep">/</span>
+  <span class="ed-bc-current">{{ exercise().name }}</span>
+</nav>
+
+<!-- ── HEADER ──────────────────────────────────────────────────── -->
+<header class="ed-header">
+  <div>
+    <div class="ed-header-badges">
+      <ff-badge variant="neutral">{{ muscleLabel[exercise().muscleGroup] }}</ff-badge>
+      <ff-badge [variant]="exercise().difficulty">{{ diffLabel(exercise().difficulty) }}</ff-badge>
+      <span class="ed-equipment">{{ exercise().equipment }}</span>
+    </div>
+    <h1 class="ed-title">{{ exercise().name }}</h1>
+  </div>
+  <div class="ed-rating-block">
+    <ff-macro-ring
+      [percent]="ratingPercent()"
+      [value]="exercise().avgRating.toFixed(1)"
+      caption="valoración"
+      [size]="90"
+      [stroke]="7"
+    />
+    <span class="ed-rating-count">{{ exercise().ratingCount }} valoraciones</span>
+  </div>
+</header>
+
+<!-- ── INSTRUCCIONES + CONSEJOS ────────────────────────────────── -->
+<div class="ed-main">
+  <ff-section-card title="Instrucciones" class="ed-instructions-card">
+    <ol class="ed-list">
+      @for (step of exercise().instructions; track $index) {
+        <li class="ed-list-item">{{ step }}</li>
+      }
+    </ol>
+  </ff-section-card>
+
+  <ff-section-card title="Consejos" class="ed-tips-card">
+    <ul class="ed-tips">
+      @for (tip of exercise().tips; track $index) {
+        <li class="ed-tip-item">
+          <span class="ed-tip-icon">💡</span>
+          <span>{{ tip }}</span>
+        </li>
+      }
+    </ul>
+  </ff-section-card>
+</div>
+
+<!-- ── HISTORIAL ───────────────────────────────────────────────── -->
+<ff-section-card title="Tu historial con este ejercicio" class="ed-history-card">
+  <div class="ed-history-header">
+    <span>Fecha</span>
+    <span>Series</span>
+    <span>Reps</span>
+    <span>Peso</span>
+  </div>
+  @for (h of exercise().history; track h.date) {
+    <div class="ed-history-row">
+      <span class="ed-h-date">{{ h.date }}</span>
+      <span class="ed-h-val">{{ h.sets }}</span>
+      <span class="ed-h-val">{{ h.reps }}</span>
+      <span class="ed-h-val ed-h-weight">{{ h.weight }}</span>
+    </div>
+  }
+</ff-section-card>
+
+<!-- ── ACCIONES ────────────────────────────────────────────────── -->
+<div class="ed-actions">
+  <a routerLink="/workouts/exercises" class="btn btn-ff-secondary">← Volver</a>
+  <a routerLink="/workouts/sessions/new" class="btn btn-ff-primary">▶ Registrar sesión</a>
+</div>

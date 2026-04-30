@@ -1,0 +1,261 @@
+:host {
+  display: block;
+  padding: var(--space-xl) var(--space-xl) var(--space-3xl);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+// ── Header ────────────────────────────────────────────────────────────────────
+
+.as-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.as-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.as-title {
+  font-family: var(--font-display);
+  font-size: var(--text-heading-lg-size);
+  font-weight: 800;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.as-timer {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.as-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.as-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 160px;
+}
+
+.as-progress-label {
+  font-size: var(--text-body-sm-size);
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+.as-progress-track {
+  height: 6px;
+  background: var(--color-surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.as-progress-fill {
+  height: 100%;
+  background: var(--color-primary);
+  border-radius: 999px;
+  transition: width 0.4s;
+}
+
+// ── Ejercicios ────────────────────────────────────────────────────────────────
+
+.as-exercises {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.as-exercise-block {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  transition: border-color 0.2s;
+
+  &--done {
+    border-color: rgba(29, 158, 117, 0.4);
+    background: rgba(29, 158, 117, 0.04);
+  }
+}
+
+.as-ex-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.as-ex-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-text);
+  margin: 0 0 0.4rem;
+}
+
+.as-ex-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.as-ex-target {
+  font-size: var(--text-body-sm-size);
+  color: var(--color-text-muted);
+}
+
+.as-ex-check {
+  font-size: 1.5rem;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+// ── Series ────────────────────────────────────────────────────────────────────
+
+.as-set-header {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 48px;
+  gap: var(--space-sm);
+  padding: 0.25rem 0;
+  margin-bottom: 0.25rem;
+  font-size: var(--text-label-size);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.as-set-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 48px;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--color-border);
+  transition: opacity 0.2s;
+
+  &--done {
+    opacity: 0.6;
+  }
+}
+
+.as-set-num {
+  font-size: var(--text-body-sm-size);
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.as-set-input {
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm-size);
+  padding: 0.35rem 0.5rem;
+  width: 100%;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.15s;
+
+  &:focus {
+    border-color: var(--color-primary);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  // Ocultar flechas de número
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+  }
+}
+
+.as-check-btn {
+  background: none;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    color 0.15s,
+    background 0.15s;
+  margin: 0 auto;
+
+  &:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  &--done {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+  }
+}
+
+// ── Añadir serie ──────────────────────────────────────────────────────────────
+
+.as-add-set {
+  background: none;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-body-sm-size);
+  padding: 0.4rem 0;
+  width: 100%;
+  cursor: pointer;
+  margin-top: var(--space-sm);
+  transition:
+    border-color 0.15s,
+    color 0.15s;
+
+  &:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+}
+
+// ── Valoración ────────────────────────────────────────────────────────────────
+
+.as-rating-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.as-rating-label {
+  font-size: var(--text-body-sm-size);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}

@@ -1,0 +1,140 @@
+<!-- ── HEADER ──────────────────────────────────────────────── -->
+<header class="db-header">
+  <div>
+    <h1 class="db-greeting">Buenos días, {{ greeting().userName }} 👋</h1>
+    <p class="db-date">
+      {{ greeting().dateLabel }} · Semana {{ greeting().weekNumber }} de tu plan
+    </p>
+  </div>
+  <a routerLink="/workouts/sessions/new" class="btn btn-ff-primary db-cta-btn"
+    >+ Registrar sesión</a
+  >
+</header>
+
+<!-- ── KPI GRID ────────────────────────────────────────────── -->
+<section class="db-kpis">
+  @for (kpi of kpis(); track kpi.label) {
+    <ff-stat-tile
+      [label]="kpi.label"
+      [value]="kpi.value"
+      [unit]="kpi.unit"
+      [hint]="kpi.hint"
+      [tone]="kpi.tone"
+    />
+  }
+</section>
+
+<!-- ── MIDDLE ROW: Activity + Macros ──────────────────────── -->
+<section class="db-middle">
+  <!-- Weekly activity chart -->
+  <ff-section-card
+    title="Actividad semanal"
+    actionLabel="Ver todo"
+    actionHref="/workouts/history"
+    class="db-activity-card"
+  >
+    <div class="db-chart">
+      @for (d of weekly().days; track d.day) {
+        <div class="db-chart-col">
+          <div class="db-bar-wrapper">
+            <div
+              class="db-bar"
+              [class.db-bar--empty]="d.percent === 0"
+              [style.height.%]="d.percent || 8"
+            ></div>
+          </div>
+          <span class="db-day-label">{{ d.day }}</span>
+        </div>
+      }
+    </div>
+    <div class="db-chart-summary">
+      <span>{{ weekly().completedCount }} de {{ weekly().totalCount }} sesiones completadas</span>
+      <span class="db-chart-pct">+{{ weekly().changePercent }}%</span>
+    </div>
+  </ff-section-card>
+
+  <!-- Daily macros -->
+  <ff-section-card
+    title="Macros de hoy"
+    actionLabel="Editar"
+    actionHref="/nutrition"
+    class="db-macros-card"
+  >
+    @for (m of macros().macros; track m.name) {
+      <ff-macro-bar
+        [name]="m.name"
+        [current]="m.current"
+        [target]="m.target"
+        [unit]="m.unit"
+        [color]="m.color"
+      />
+    }
+    <div class="db-cal-summary">
+      <span class="db-cal-label">Calorías consumidas</span>
+      <span class="db-cal-value"
+        >{{ macros().caloriesConsumed | number }} /
+        {{ macros().caloriesTarget | number }} kcal</span
+      >
+    </div>
+  </ff-section-card>
+</section>
+
+<!-- ── BOTTOM ROW: Last session + Sidebar ─────────────────── -->
+<section class="db-bottom">
+  <!-- Last session -->
+  <ff-section-card
+    title="Última sesión — {{ session().name }}"
+    actionLabel="Ver detalle"
+    actionHref="/workouts/history"
+    class="db-session-card"
+  >
+    <div class="db-exercises">
+      @for (ex of session().exercises; track ex.name) {
+        <div class="db-exercise-row">
+          <span class="db-ex-dot" [attr.data-diff]="ex.difficulty"></span>
+          <span class="db-ex-name">{{ ex.name }}</span>
+          <span class="db-ex-detail">{{ ex.sets }}×{{ ex.reps }} · {{ ex.weight }}</span>
+          <ff-star-rating [value]="ex.rating" />
+          <ff-badge [variant]="ex.difficulty">{{ ex.difficultyLabel }}</ff-badge>
+        </div>
+      }
+    </div>
+  </ff-section-card>
+
+  <!-- Sidebar: AI recommendations + plan -->
+  <aside class="db-sidebar">
+    <!-- AI Recommendations -->
+    <div class="db-rec-card">
+      <div class="db-rec-header">
+        <span class="db-rec-eyebrow">RECOMENDACIONES IA</span>
+      </div>
+      @for (rec of recommendations(); track rec.text) {
+        <div class="db-rec-item">
+          <span class="db-rec-icon">{{ rec.icon }}</span>
+          <p class="db-rec-text">{{ rec.text }}</p>
+        </div>
+      }
+    </div>
+
+    <!-- Active plan -->
+    <ff-section-card title="Mi plan actual">
+      <div class="db-plan-row">
+        <div>
+          <div class="db-plan-title">Rutina</div>
+          <div class="db-plan-detail">{{ plan().routineName }} · {{ plan().routineLevel }}</div>
+        </div>
+        <ff-badge variant="primary">Activa</ff-badge>
+      </div>
+      <div class="db-plan-row">
+        <div>
+          <div class="db-plan-title">Dieta</div>
+          <div class="db-plan-detail">
+            {{ plan().dietName }} · {{ plan().dietCalories | number }} kcal
+          </div>
+        </div>
+        <ff-badge variant="primary">Activa</ff-badge>
+      </div>
+      <a routerLink="/profile/plan" class="btn btn-ff-secondary btn-sm db-plan-btn">Cambiar plan</a>
+    </ff-section-card>
+  </aside>
+</section>

@@ -1,0 +1,69 @@
+<!-- ── BREADCRUMB ───────────────────────────────────────────────── -->
+<nav class="rd-breadcrumb">
+  <a routerLink="/workouts" class="rd-bc-link">Rutinas</a>
+  <span class="rd-bc-sep">/</span>
+  <span class="rd-bc-current">{{ routine().name }}</span>
+</nav>
+
+<!-- ── HEADER ──────────────────────────────────────────────────── -->
+<header class="rd-header">
+  <div class="rd-header-main">
+    <div class="rd-header-badges">
+      <ff-badge [variant]="routine().level">{{ levelLabel(routine().level) }}</ff-badge>
+      <span class="rd-category">{{ routine().category }}</span>
+    </div>
+    <h1 class="rd-title">{{ routine().name }}</h1>
+    <p class="rd-meta">Por {{ routine().author }} · Actualizada el {{ routine().lastUpdated }}</p>
+  </div>
+  <a
+    [routerLink]="['/workouts/sessions/new']"
+    [queryParams]="{ routineId: id() }"
+    class="btn btn-ff-primary rd-cta-btn"
+  >
+    ▶ Empezar sesión
+  </a>
+</header>
+
+<!-- ── STATS ───────────────────────────────────────────────────── -->
+<section class="rd-stats">
+  <ff-stat-tile label="Días / semana" [value]="routine().daysPerWeek" unit="días" />
+  <ff-stat-tile label="Duración" [value]="routine().durationMin" unit="min" />
+  <ff-stat-tile label="Ejercicios" [value]="routine().exerciseCount" unit="" />
+</section>
+
+<!-- ── DESCRIPCIÓN ─────────────────────────────────────────────── -->
+<ff-section-card title="Descripción" class="rd-desc-card">
+  <p class="rd-desc-text">{{ routine().description }}</p>
+</ff-section-card>
+
+<!-- ── EJERCICIOS ──────────────────────────────────────────────── -->
+<ff-section-card title="Ejercicios" class="rd-exercises-card">
+  @for (ex of routine().exercises; track ex.exerciseId; let i = $index) {
+    <div class="rd-ex-item">
+      <span class="rd-ex-num">{{ i + 1 }}</span>
+      <div class="rd-ex-info">
+        <a [routerLink]="['/workouts/exercises', ex.exerciseId]" class="rd-ex-name">
+          {{ ex.name }}
+        </a>
+        @if (ex.note) {
+          <span class="rd-ex-note">{{ ex.note }}</span>
+        }
+      </div>
+      <div class="rd-ex-meta">
+        <span class="rd-ex-sets">{{ ex.sets }} × {{ ex.reps }}</span>
+        <span class="rd-ex-rest">⏸ {{ formatRest(ex.restSec) }}</span>
+      </div>
+    </div>
+  }
+</ff-section-card>
+
+<!-- ── CTA INFERIOR ────────────────────────────────────────────── -->
+<div class="rd-footer-cta">
+  <a routerLink="/workouts" class="btn btn-ff-secondary">← Volver a rutinas</a>
+  <a
+    [routerLink]="['/workouts/sessions/new']"
+    [queryParams]="{ routineId: id() }"
+    class="btn btn-ff-primary"
+    >▶ Empezar sesión</a
+  >
+</div>

@@ -1,0 +1,52 @@
+<!-- ── HERO ────────────────────────────────────────────────────── -->
+<div class="ss-hero">
+  <div class="ss-hero-icon">🏆</div>
+  <h1 class="ss-hero-title">¡Sesión completada!</h1>
+  <p class="ss-hero-sub">{{ summary().routineName }} · {{ summary().date }}</p>
+</div>
+
+<!-- ── KPIs ────────────────────────────────────────────────────── -->
+<section class="ss-kpis">
+  <ff-stat-tile label="Duración" [value]="summary().durationMin" unit="min" tone="primary" />
+  <ff-stat-tile label="Volumen total" [value]="summary().totalVolume" unit="kg" tone="stars" />
+  <ff-stat-tile label="Ejercicios" [value]="summary().exercises.length" unit="" />
+  <ff-stat-tile label="Series totales" [value]="totalSeries()" unit="" />
+</section>
+
+<!-- ── EJERCICIOS ──────────────────────────────────────────────── -->
+<ff-section-card title="Ejercicios realizados" class="ss-exercises-card">
+  @for (ex of summary().exercises; track ex.exerciseId) {
+    <div class="ss-ex-row">
+      <div class="ss-ex-info">
+        <span class="ss-ex-name">{{ ex.name }}</span>
+        <div class="ss-ex-sets">
+          @for (s of ex.sets; track s.setNumber) {
+            <span class="ss-ex-set">{{ s.reps }}r · {{ s.weight }}</span>
+          }
+        </div>
+      </div>
+      <div class="ss-ex-right">
+        <ff-star-rating [value]="ex.rating" [showValue]="true" />
+        <ff-badge [variant]="ex.difficulty">{{ ex.difficultyLabel }}</ff-badge>
+      </div>
+    </div>
+  }
+</ff-section-card>
+
+<!-- ── RÉCORDS ─────────────────────────────────────────────────── -->
+@if (summary().personalBests.length > 0) {
+  <ff-section-card title="🥇 Récords personales" class="ss-pbs-card">
+    @for (pb of summary().personalBests; track pb) {
+      <div class="ss-pb-item">
+        <span class="ss-pb-icon">⭐</span>
+        <span class="ss-pb-text">{{ pb }}</span>
+      </div>
+    }
+  </ff-section-card>
+}
+
+<!-- ── ACCIONES ────────────────────────────────────────────────── -->
+<div class="ss-actions">
+  <a routerLink="/workouts/history" class="btn btn-ff-secondary">Ver historial</a>
+  <a routerLink="/workouts/sessions/new" class="btn btn-ff-primary">Nueva sesión</a>
+</div>

@@ -1,0 +1,72 @@
+<!-- ── HEADER ──────────────────────────────────────────────────── -->
+<header class="pc-header">
+  <div>
+    <h1 class="pc-title">Mi progreso</h1>
+    <p class="pc-subtitle">Evolución de tus marcas personales</p>
+  </div>
+</header>
+
+<!-- ── KPIs ────────────────────────────────────────────────────── -->
+<section class="pc-kpis">
+  @for (kpi of kpis(); track kpi.label) {
+    <ff-stat-tile
+      [label]="kpi.label"
+      [value]="kpi.value"
+      [unit]="kpi.unit"
+      [hint]="kpi.hint"
+      [tone]="kpi.tone"
+    />
+  }
+</section>
+
+<!-- ── GRÁFICO DE EVOLUCIÓN ────────────────────────────────────── -->
+<ff-section-card class="pc-chart-card">
+  <div class="pc-chart-head">
+    <span class="pc-chart-title">Evolución de peso — {{ selectedExercise().name }}</span>
+    <div class="pc-exercise-pills">
+      @for (ex of progressData(); track ex.exerciseId) {
+        <button
+          class="pc-pill"
+          [class.pc-pill--active]="selectedId() === ex.exerciseId"
+          (click)="selectedId.set(ex.exerciseId)"
+        >
+          {{ ex.name }}
+        </button>
+      }
+    </div>
+  </div>
+  <div class="pc-chart">
+    @for (bar of chartBars(); track bar.date) {
+      <div class="pc-chart-col">
+        <span class="pc-bar-value">{{ bar.weight }} kg</span>
+        <div class="pc-bar-wrapper">
+          <div class="pc-bar" [style.height.%]="bar.percent"></div>
+        </div>
+        <span class="pc-bar-label">{{ bar.date }}</span>
+      </div>
+    }
+  </div>
+</ff-section-card>
+
+<!-- ── PROGRESO POR EJERCICIO ──────────────────────────────────── -->
+<ff-section-card title="Mejoras por ejercicio" class="pc-progress-card">
+  @for (ex of progressData(); track ex.exerciseId) {
+    <div class="pc-progress-row">
+      <div class="pc-progress-info">
+        <span class="pc-progress-name">{{ ex.name }}</span>
+        <span class="pc-progress-delta">
+          +{{ ex.currentWeight - ex.initialWeight }} kg ({{
+            (((ex.currentWeight - ex.initialWeight) / ex.initialWeight) * 100).toFixed(0)
+          }}%)
+        </span>
+      </div>
+      <ff-macro-bar
+        [name]="ex.initialWeight + ' kg'"
+        [current]="ex.currentWeight"
+        [target]="ex.currentWeight"
+        unit=" kg"
+        color="primary"
+      />
+    </div>
+  }
+</ff-section-card>

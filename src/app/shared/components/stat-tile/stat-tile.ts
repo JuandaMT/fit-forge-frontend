@@ -18,11 +18,17 @@ import { Component, input } from '@angular/core';
   `,
   styles: [
     `
+      :host {
+        display: block;
+        height: 100%;
+      }
       .ff-stat-tile {
         background: var(--color-surface);
         border: 1px solid var(--color-border);
         border-radius: var(--radius-lg);
         padding: 1rem 1.15rem;
+        height: 100%;
+        box-sizing: border-box;
       }
       .label {
         font-size: 0.68rem;
