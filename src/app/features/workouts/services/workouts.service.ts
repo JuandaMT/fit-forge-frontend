@@ -1,4 +1,7 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { catchError, of } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 import {
   Exercise,
   ExerciseDetail,
@@ -637,6 +640,13 @@ const SESSION_SUMMARY: SessionSummaryData = {
 
 @Injectable({ providedIn: 'root' })
 export class WorkoutsService {
+  private readonly http = inject(HttpClient);
+  private sessionHistorySig = signal<SessionHistoryItem[]>([]);
+
+  constructor() {
+    this.loadSessionHistory();
+  }
+
   getRoutines() {
     return signal(ROUTINES);
   }
@@ -682,7 +692,105 @@ export class WorkoutsService {
   }
 
   getSessionHistory() {
-    return signal(SESSION_HISTORY);
+    return this.sessionHistorySig;
+  }
+
+  private loadSessionHistory() {
+    this.http
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .get<{ data: any[] }>(`${environment.apiUrl}/workouts`)
+      .pipe(
+        catchError((err) => {
+          console.error('Error al cargar historial de sesiones:', err);
+          return of({ data: null });
+        }),
+      )
+      .subscribe((res) => {
+        if (res.data) {
+          const mapped: SessionHistoryItem[] = res.data.map((d) => ({
+            id: d.id.toString(),
+            routineName: d.routineId ? `Rutina ${d.routineId}` : 'Sesión Libre',
+            date: new Date(d.startedAt).toLocaleDateString('es-ES', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric',
+            }),
+            daysAgo: Math.max(
+              0,
+              Math.round((new Date().getTime() - new Date(d.startedAt).getTime()) / 86400000),
+            ),
+            durationMin: d.durationMin ?? 0,
+            exerciseCount: d.exerciseCount ?? 0,
+            totalVolume: 0,
+            rating:
+              d.generalFeeling === 'great'
+                ? 5
+                : d.generalFeeling === 'good'
+                  ? 4
+                  : d.generalFeeling === 'regular'
+                    ? 3
+                    : 2,
+          }));
+          this.sessionHistorySig.set(mapped);
+        }
+      });
+  }
+
+  createSession(routineId?: number, notes?: string) {
+    return this.http.post<{ id: number; startedAt: string }>(`${environment.apiUrl}/workouts`, {
+      routineId,
+      notes,
+      startedAt: new Date().toISOString(),
+    });
+  }
+
+  addExerciseToSession(sessionId: number, exerciseId: number, orderIndex: number) {
+    return this.http.post<{ id: number }>(`${environment.apiUrl}/workouts/${sessionId}/exercises`, {
+      exerciseId,
+      orderIndex,
+    });
+  }
+
+  addSetToExercise(
+    sessionId: number,
+    sessionExerciseId: number,
+    setNumber: number,
+    reps: number | null,
+    weightKg: string,
+    rpe?: number,
+  ) {
+    return this.http.post<{ id: number }>(
+      `${environment.apiUrl}/workouts/${sessionId}/exercises/${sessionExerciseId}/sets`,
+      {
+        setNumber,
+        reps,
+        weightKg,
+        rpe,
+      },
+    );
+  }
+
+  rateSessionExercise(
+    sessionId: number,
+    sessionExerciseId: number,
+    enjoyment: number,
+    difficulty: number,
+  ) {
+    return this.http.put(
+      `${environment.apiUrl}/workouts/${sessionId}/exercises/${sessionExerciseId}`,
+      {
+        enjoyment,
+        difficulty,
+      },
+    );
+  }
+
+  finishSession(sessionId: number, durationMin: number, generalFeeling: string, notes?: string) {
+    return this.http.put(`${environment.apiUrl}/workouts/${sessionId}/finish`, {
+      durationMin,
+      generalFeeling,
+      notes,
+    });
   }
 
   getProgressKpis(): ReturnType<typeof signal<ProgressKpi[]>> {

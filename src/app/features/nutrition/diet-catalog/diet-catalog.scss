@@ -1,0 +1,192 @@
+.diet-catalog-container {
+  min-height: 100vh;
+  background-color: var(--color-background, #121212);
+  color: #fff;
+}
+
+.text-muted-light {
+  color: #a0a0a0;
+}
+
+/* Filters */
+.filters-container {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+
+  /* hide scrollbar */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  scrollbar-width: none;
+}
+
+.filter-pill {
+  background: transparent;
+  border: 1px solid #333;
+  color: #fff;
+  border-radius: 20px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #2a2a2a;
+    border-color: #444;
+  }
+
+  &.active {
+    background: #333;
+    border-color: #555;
+  }
+}
+
+/* Cards */
+.diet-card {
+  background-color: #1e1e1e;
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #2c2c2c;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: #444;
+  }
+}
+
+.diet-badge {
+  background-color: #2c2c2c;
+  color: #b0b0b0;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 500;
+
+  &.badge-active {
+    background-color: rgba(46, 139, 87, 0.2);
+    color: #4ade80;
+    border: 1px solid rgba(46, 139, 87, 0.3);
+  }
+}
+
+.diet-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
+}
+
+.diet-desc {
+  font-size: 0.85rem;
+  color: #a0a0a0;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.diet-calories {
+  .cal-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4ade80; /* green */
+  }
+  .cal-text {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+  }
+}
+
+/* Macros */
+.macros-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.macro-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 40px;
+  align-items: center;
+  gap: 1rem;
+}
+
+.macro-label {
+  font-size: 0.85rem;
+  color: #d0d0d0;
+}
+
+.macro-value {
+  font-size: 0.85rem;
+  color: #d0d0d0;
+  text-align: right;
+}
+
+.macro-progress-bar {
+  height: 6px;
+  background-color: #333;
+  border-radius: 10px;
+  overflow: hidden;
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 10px;
+
+    &.fill-protein {
+      background-color: #4ade80;
+    } /* green */
+    &.fill-carbs {
+      background-color: #f59e0b;
+    } /* orange */
+    &.fill-fat {
+      background-color: #ef4444;
+    } /* red */
+  }
+}
+
+/* Meals */
+.meals-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.meal-pill {
+  background-color: #121212;
+  color: #a0a0a0;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+}
+
+/* Footer */
+.diet-footer {
+  .rating {
+    font-size: 0.85rem;
+    color: #fff;
+    .bi-star-fill {
+      margin-right: 2px;
+    }
+  }
+
+  .btn-outline-light {
+    border-color: #444;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 0.4rem 1.25rem;
+
+    &:hover {
+      background-color: #333;
+      border-color: #555;
+    }
+  }
+}
+
+.empty-state {
+  border: 1px dashed #333;
+  border-radius: 16px;
+  background: #1e1e1e;
+}

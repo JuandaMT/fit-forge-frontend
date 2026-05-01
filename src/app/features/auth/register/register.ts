@@ -1,8 +1,79 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { RouterLink, Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
-  selector: 'app-placeholder',
-  template:
-    '<div class="container py-4"><h2>Registro</h2><p class="text-muted">Próximamente...</p></div>',
+  selector: 'app-register',
+  imports: [RouterLink, FormsModule],
+  templateUrl: './register.html',
+  styleUrl: './register.scss',
 })
-export class Register {}
+export class Register {
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
+
+  // Campos requeridos por el backend
+  username = '';
+  email = '';
+  password = '';
+  firstName = '';
+  lastName = '';
+  goalType = '';
+
+  // Campos opcionales
+  birthdate = '';
+  heightCm: number | null = null;
+  currentWeightKg: number | null = null;
+
+  loading = signal(false);
+  errorMessage = signal('');
+
+  onSubmit(): void {
+    if (
+      !this.username ||
+      !this.email ||
+      !this.password ||
+      !this.firstName ||
+      !this.lastName ||
+      !this.goalType
+    ) {
+      this.errorMessage.set('Por favor, rellena todos los campos obligatorios.');
+      return;
+    }
+
+    this.loading.set(true);
+    this.errorMessage.set('');
+
+    const payload: Record<string, string | number | null> = {
+      username: this.username,
+      email: this.email,
+      password: this.password,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      goalType: this.goalType,
+    };
+
+    if (this.birthdate) payload['birthdate'] = this.birthdate;
+    if (this.heightCm) payload['heightCm'] = this.heightCm;
+    if (this.currentWeightKg) payload['currentWeightKg'] = this.currentWeightKg;
+
+    this.auth.register(payload).subscribe({
+      next: () => {
+        this.loading.set(false);
+        // Opcional: auto-login o redirigir al login
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        this.loading.set(false);
+        if (err.status === 409) {
+          this.errorMessage.set('El email o nombre de usuario ya está en uso.');
+        } else if (err.status === 0) {
+          this.errorMessage.set('No se pudo conectar con el servidor. (¿CORS?)');
+        } else {
+          this.errorMessage.set('Error en el registro. Revisa los datos.');
+        }
+      },
+    });
+  }
+}

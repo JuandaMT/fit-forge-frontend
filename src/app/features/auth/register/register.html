@@ -1,0 +1,171 @@
+<section class="r-page">
+  <aside class="r-info">
+    <div class="r-info-inner">
+      <a routerLink="/" class="r-brand">FitForge</a>
+
+      <div class="r-copy">
+        <h1 class="r-title">Tu progreso,<br />tu historia</h1>
+        <p class="r-subtitle">Entrena con datos reales y recibe recomendaciones adaptadas a ti.</p>
+      </div>
+
+      <ul class="r-benefits">
+        <li>Rutinas predefinidas por objetivo</li>
+        <li>Tracking de series, reps y peso</li>
+        <li>Valoración 1-5 por ejercicio y comida</li>
+        <li>Recomendaciones dinámicas con IA</li>
+        <li>Seguimiento de dieta y macros</li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="r-form-side">
+    <div class="r-form-wrap">
+      <div class="r-tabs" aria-label="Acceso a FitForge">
+        <a routerLink="/login">Iniciar sesión</a>
+        <a routerLink="/register" class="active" aria-current="page">Crear cuenta</a>
+      </div>
+
+      <form class="r-form" (ngSubmit)="onSubmit()">
+        @if (errorMessage()) {
+          <div
+            class="r-error"
+            style="
+              color: var(--color-danger);
+              background: var(--color-hard-bg);
+              padding: 0.75rem;
+              border-radius: 0.5rem;
+              margin-bottom: 1rem;
+              border: 1px solid rgba(226, 75, 74, 0.3);
+              font-size: 0.85rem;
+            "
+          >
+            {{ errorMessage() }}
+          </div>
+        }
+
+        <div class="r-grid">
+          <div class="r-field">
+            <label for="firstName">Nombre *</label>
+            <input
+              id="firstName"
+              name="firstName"
+              [(ngModel)]="firstName"
+              type="text"
+              autocomplete="given-name"
+              placeholder="Tu nombre"
+              required
+            />
+          </div>
+          <div class="r-field">
+            <label for="lastName">Apellidos *</label>
+            <input
+              id="lastName"
+              name="lastName"
+              [(ngModel)]="lastName"
+              type="text"
+              autocomplete="family-name"
+              placeholder="Tus apellidos"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="r-field">
+          <label for="username">Nombre de usuario *</label>
+          <input
+            id="username"
+            name="username"
+            [(ngModel)]="username"
+            type="text"
+            autocomplete="username"
+            placeholder="fitforge_user"
+            required
+          />
+        </div>
+
+        <div class="r-field">
+          <label for="email">Email *</label>
+          <input
+            id="email"
+            name="email"
+            [(ngModel)]="email"
+            type="email"
+            autocomplete="email"
+            placeholder="tu@email.com"
+            required
+          />
+        </div>
+
+        <div class="r-field">
+          <label for="password">Contraseña *</label>
+          <input
+            id="password"
+            name="password"
+            [(ngModel)]="password"
+            type="password"
+            autocomplete="new-password"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <div class="r-grid">
+          <div class="r-field">
+            <label for="birthdate">Fecha de nac.</label>
+            <input id="birthdate" name="birthdate" [(ngModel)]="birthdate" type="date" />
+          </div>
+
+          <div class="r-field">
+            <label for="heightCm">Altura (cm)</label>
+            <input
+              id="heightCm"
+              name="heightCm"
+              [(ngModel)]="heightCm"
+              type="number"
+              min="100"
+              placeholder="175"
+            />
+          </div>
+
+          <div class="r-field">
+            <label for="currentWeightKg">Peso (kg)</label>
+            <input
+              id="currentWeightKg"
+              name="currentWeightKg"
+              [(ngModel)]="currentWeightKg"
+              type="number"
+              min="30"
+              placeholder="70"
+            />
+          </div>
+        </div>
+
+        <div class="r-field">
+          <label for="goalType">Objetivo *</label>
+          <select id="goalType" name="goalType" [(ngModel)]="goalType" required>
+            <option value="">Selecciona tu objetivo</option>
+            <option value="weight_loss">Definición (Pérdida de peso)</option>
+            <option value="muscle_gain">Aumento muscular</option>
+            <option value="maintenance">Mantenimiento</option>
+            <option value="endurance">Resistencia</option>
+          </select>
+        </div>
+
+        <a class="r-forgot" routerLink="/forgot-password">¿Olvidaste tu contraseña?</a>
+
+        <button type="submit" class="r-submit" [disabled]="loading()">
+          @if (loading()) {
+            Creando cuenta...
+          } @else {
+            Crear cuenta
+          }
+        </button>
+      </form>
+
+      <p class="r-login">
+        ¿Ya tienes cuenta?
+        <a routerLink="/login">Inicia sesión</a>
+      </p>
+    </div>
+  </main>
+</section>

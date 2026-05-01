@@ -1,0 +1,302 @@
+<div class="daily-diet-container py-4">
+  <div class="container">
+    @if (error()) {
+      <div class="alert alert-danger shadow-sm rounded-3 border-0 mb-4">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ error() }}
+      </div>
+    }
+
+    @if (loading()) {
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+    } @else if (progress()) {
+      <!-- Header -->
+      <header class="daily-header mb-4 d-flex justify-content-between align-items-start">
+        <div>
+          <h1 class="display-6 fw-bold text-white mb-1">Dieta</h1>
+          <p class="text-muted-light mb-0">
+            Déficit moderado · Objetivo {{ progress()!.targetCalories | number }} kcal
+          </p>
+          <div class="d-flex align-items-center mt-2 text-muted-light small">
+            <i class="bi bi-calendar3 me-2"></i> Hoy —
+            {{ progress()!.date | date: 'fullDate' : '' : 'es' }} <span class="mx-2">|</span> Semana
+            6 de tu plan
+          </div>
+        </div>
+        <div class="header-actions d-flex gap-2">
+          <button class="btn btn-close-day" (click)="completeDay()">Cerrar día</button>
+          <button class="btn btn-add" (click)="addFood()">+ Añadir alimento</button>
+        </div>
+      </header>
+
+      <div class="row g-4">
+        <!-- Main Column (Left) -->
+        <div class="col-12 col-lg-8">
+          <!-- Calories Card -->
+          <div class="dashboard-card mb-4">
+            <div class="row align-items-center text-center text-md-start">
+              <div class="col-md-4 d-flex justify-content-center border-end-md border-dark">
+                <div class="calories-circle">
+                  <div class="cal-value text-success">
+                    {{ progress()!.consumedCalories | number }}
+                  </div>
+                  <div class="cal-label">KCAL</div>
+                </div>
+              </div>
+              <div class="col-md-8 ps-md-5 mt-4 mt-md-0">
+                <div class="d-flex justify-content-between text-center mb-3">
+                  <div>
+                    <div class="h3 mb-0 text-success">
+                      {{ progress()!.consumedCalories | number }}
+                    </div>
+                    <div class="text-muted-light small fw-bold tracking-wider">CONSUMIDAS</div>
+                  </div>
+                  <div>
+                    <div class="h3 mb-0 text-white">{{ progress()!.targetCalories | number }}</div>
+                    <div class="text-muted-light small fw-bold tracking-wider">OBJETIVO</div>
+                  </div>
+                  <div>
+                    <div class="h3 mb-0 text-danger">
+                      {{ progress()!.targetCalories - progress()!.consumedCalories | number }}
+                    </div>
+                    <div class="text-muted-light small fw-bold tracking-wider">RESTANTES</div>
+                  </div>
+                </div>
+                <p class="text-muted-light mb-0 small">
+                  Llevas el
+                  <strong class="text-success"
+                    >{{
+                      (progress()!.consumedCalories / progress()!.targetCalories) * 100
+                        | number: '1.0-1'
+                    }}%</strong
+                  >
+                  del objetivo calórico de hoy
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Macros Card -->
+          <div class="dashboard-card mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h5 class="text-muted-light mb-0 tracking-wider font-sm">MACROS DEL DÍA</h5>
+              <a href="#" class="text-success text-decoration-none small">Ver detalle</a>
+            </div>
+
+            <div class="macro-row mb-3">
+              <div class="macro-name">Proteína</div>
+              <div class="macro-bar-container">
+                <div
+                  class="macro-bar fill-protein"
+                  [style.width.%]="(progress()!.consumedProtein / progress()!.targetProtein) * 100"
+                ></div>
+              </div>
+              <div class="macro-stats text-end">
+                <strong class="text-white">{{ progress()!.consumedProtein }}g</strong>
+                <span class="text-muted-light">/ {{ progress()!.targetProtein }}g</span>
+              </div>
+            </div>
+
+            <div class="macro-row mb-3">
+              <div class="macro-name">Carbohidratos</div>
+              <div class="macro-bar-container">
+                <div
+                  class="macro-bar fill-carbs"
+                  [style.width.%]="(progress()!.consumedCarbs / progress()!.targetCarbs) * 100"
+                ></div>
+              </div>
+              <div class="macro-stats text-end">
+                <strong class="text-white">{{ progress()!.consumedCarbs }}g</strong>
+                <span class="text-muted-light">/ {{ progress()!.targetCarbs }}g</span>
+              </div>
+            </div>
+
+            <div class="macro-row">
+              <div class="macro-name">Grasas</div>
+              <div class="macro-bar-container">
+                <div
+                  class="macro-bar fill-fat"
+                  [style.width.%]="(progress()!.consumedFat / progress()!.targetFat) * 100"
+                ></div>
+              </div>
+              <div class="macro-stats text-end">
+                <strong class="text-white">{{ progress()!.consumedFat }}g</strong>
+                <span class="text-muted-light">/ {{ progress()!.targetFat }}g</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Meals List -->
+          <div class="meals-container">
+            @for (meal of progress()!.meals; track meal.id) {
+              <div
+                class="meal-card dashboard-card mb-3 p-0 overflow-hidden"
+                [class.meal-pending]="!meal.completed"
+              >
+                <div
+                  class="meal-header d-flex justify-content-between align-items-center p-3 cursor-pointer"
+                  data-bs-toggle="collapse"
+                  [attr.data-bs-target]="'#meal-' + meal.id"
+                >
+                  <div class="d-flex align-items-center">
+                    <div class="meal-icon me-3">
+                      <i
+                        class="bi"
+                        [ngClass]="{
+                          'bi-cup-hot': meal.type === 'breakfast',
+                          'bi-egg-fried': meal.type === 'lunch',
+                          'bi-moon': meal.type === 'dinner',
+                          'bi-apple': meal.type === 'snack',
+                        }"
+                      ></i>
+                    </div>
+                    <div>
+                      <h6 class="mb-0 text-white">{{ meal.name }}</h6>
+                      <small class="text-muted-light"
+                        >{{ meal.time }} · {{ meal.ingredients?.length || 0 }} alimentos</small
+                      >
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="text-white">{{ meal.calories }} kcal</span>
+                    @if (meal.completed) {
+                      <span class="badge rounded-pill bg-success-soft text-success px-3 py-2"
+                        >Completado</span
+                      >
+                    } @else {
+                      <span
+                        class="badge rounded-pill bg-dark text-muted-light px-3 py-2 border border-secondary"
+                        >Pendiente</span
+                      >
+                    }
+                    <i class="bi bi-chevron-down text-muted-light"></i>
+                  </div>
+                </div>
+
+                <div [id]="'meal-' + meal.id" class="collapse" [class.show]="meal.completed">
+                  <div class="meal-body p-0 border-top border-dark">
+                    @for (item of meal.ingredients; track item.id) {
+                      <div
+                        class="ingredient-row d-flex justify-content-between align-items-center p-3 border-bottom border-dark"
+                      >
+                        <div class="d-flex align-items-center">
+                          <div class="food-dot me-3"></div>
+                          <span class="text-white">{{ item.name }}</span>
+                        </div>
+                        <div class="d-flex gap-4 text-muted-light">
+                          <span style="width: 50px">{{ item.amount }}</span>
+                          <span style="width: 70px; text-align: right" class="text-white"
+                            >~ kcal</span
+                          >
+                          <div class="text-warning">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                            ><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i
+                            ><i class="bi bi-star"></i>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <!-- Sidebar Column (Right) -->
+        <div class="col-12 col-lg-4">
+          <!-- Summary -->
+          <div class="dashboard-card mb-4">
+            <h6 class="text-muted-light mb-4 tracking-wider font-sm">RESUMEN DEL DÍA</h6>
+
+            <div class="d-flex justify-content-between mb-3 pb-2 border-bottom border-dark">
+              <span class="text-muted-light">Calorías consumidas</span>
+              <span class="text-success">{{ progress()!.consumedCalories | number }} kcal</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3 pb-2 border-bottom border-dark">
+              <span class="text-white">Objetivo diario</span>
+              <span class="text-white">{{ progress()!.targetCalories | number }} kcal</span>
+            </div>
+            <div class="d-flex justify-content-between mb-3 pb-2 border-bottom border-dark">
+              <span class="text-muted-light">Restantes</span>
+              <span class="text-danger"
+                >{{ progress()!.targetCalories - progress()!.consumedCalories | number }} kcal</span
+              >
+            </div>
+            <div class="d-flex justify-content-between mb-3 pb-2 border-bottom border-dark">
+              <span class="text-muted-light">Comidas registradas</span>
+              <span class="text-white"
+                >{{ getCompletedMealsCount() }} de {{ progress()!.meals.length }}</span
+              >
+            </div>
+            <div class="d-flex justify-content-between">
+              <span class="text-muted-light">Adherencia semanal</span>
+              <span class="text-success">91%</span>
+            </div>
+          </div>
+
+          <!-- Water Tracking -->
+          <div class="dashboard-card mb-4">
+            <h6 class="text-muted-light mb-4 tracking-wider font-sm">AGUA</h6>
+            <div class="d-flex gap-2 mb-3 flex-wrap">
+              <i class="bi bi-droplet-fill text-info h4 mb-0"></i>
+              <i class="bi bi-droplet-fill text-info h4 mb-0"></i>
+              <i class="bi bi-droplet-fill text-info h4 mb-0"></i>
+              <i class="bi bi-droplet-fill text-info h4 mb-0"></i>
+              <i class="bi bi-droplet-fill text-info h4 mb-0"></i>
+              <i class="bi bi-droplet text-muted-light h4 mb-0"></i>
+              <i class="bi bi-droplet text-muted-light h4 mb-0"></i>
+              <i class="bi bi-droplet text-muted-light h4 mb-0"></i>
+            </div>
+            <p class="text-muted-light small mb-0">5 / 8 vasos · 1.25L de 2L</p>
+          </div>
+
+          <!-- Assigned Diet -->
+          <div class="dashboard-card mb-4">
+            <h6 class="text-muted-light mb-3 tracking-wider font-sm">DIETA ASIGNADA</h6>
+            <h5 class="text-white mb-1">Déficit moderado</h5>
+            <p class="text-muted-light small mb-4">Ganancia muscular · 2.400 kcal/día</p>
+            <div class="d-flex gap-2">
+              <button
+                class="btn btn-outline-light flex-grow-1"
+                [routerLink]="['/nutrition/diets', 'current']"
+              >
+                Ver dieta
+              </button>
+              <button class="btn btn-outline-light flex-grow-1" routerLink="/nutrition/diets">
+                Cambiar
+              </button>
+            </div>
+          </div>
+
+          <!-- AI Suggestion -->
+          <div class="ai-suggestion-card p-4 rounded-4 mb-4">
+            <h6 class="text-primary-light mb-3 tracking-wider font-sm d-flex align-items-center">
+              <i class="bi bi-sparkles me-2"></i> SUGERENCIA IA
+            </h6>
+            <div class="suggestion-item border-start border-primary border-2 ps-3 py-1 mb-3">
+              <p class="text-primary-light mb-0 small">
+                Las grasas están al 88% — modera el aceite en la cena.
+              </p>
+            </div>
+            <div class="suggestion-item border-start border-primary border-2 ps-3 py-1">
+              <p class="text-primary-light mb-0 small">
+                Te faltan 560 kcal — la cena debería incluir proteína y carbos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    } @else {
+      <div class="text-center py-5 empty-state">
+        <i class="bi bi-clipboard-data display-1 text-muted-light mb-3"></i>
+        <h3 class="text-white">Sin datos diarios</h3>
+        <p class="text-muted-light">No hay información nutricional disponible para hoy.</p>
+      </div>
+    }
+  </div>
+</div>
