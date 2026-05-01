@@ -1,0 +1,101 @@
+<div class="diet-catalog-container py-4">
+  <div class="container">
+    <header class="catalog-header text-center mb-5">
+      <h1 class="display-5 fw-bold text-gradient">Descubre Tu Plan Nutricional Ideal</h1>
+      <p class="text-muted lead">
+        Explora nuestras dietas diseñadas por expertos para ayudarte a alcanzar tus objetivos.
+      </p>
+    </header>
+
+    <div class="search-filters-section mb-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="search-box">
+            <i class="bi bi-search search-icon"></i>
+            <input
+              type="text"
+              class="form-control form-control-lg rounded-pill px-5"
+              placeholder="Buscar dieta..."
+              [value]="searchTerm()"
+              (input)="updateSearchTerm($event)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="categories-filter mt-4 text-center">
+        @for (cat of categories; track cat) {
+          <button
+            class="btn rounded-pill px-4 me-2 mb-2 category-btn"
+            [class.active]="selectedCategory() === cat"
+            (click)="selectCategory(cat)"
+          >
+            {{ cat }}
+          </button>
+        }
+      </div>
+    </div>
+
+    @if (error()) {
+      <div class="alert alert-danger text-center shadow-sm rounded-4 border-0">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ error() }}
+      </div>
+    }
+
+    @if (loading()) {
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+      </div>
+    } @else if (filteredDiets().length > 0) {
+      <div class="row g-4">
+        @for (diet of filteredDiets(); track diet.id) {
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="card diet-card h-100 border-0 shadow-sm">
+              <div class="card-img-wrapper">
+                <img
+                  [src]="diet.imageUrl || 'assets/images/default-diet.jpg'"
+                  class="card-img-top"
+                  [alt]="diet.title"
+                />
+                <div class="diet-category-badge">{{ diet.category }}</div>
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title fw-bold">{{ diet.title }}</h5>
+                <div class="diet-tags mb-3">
+                  @for (tag of diet.tags; track tag) {
+                    <span class="badge rounded-pill bg-light text-dark border me-1">{{ tag }}</span>
+                  }
+                </div>
+                <p class="card-text text-muted flex-grow-1">{{ diet.description }}</p>
+
+                <div
+                  class="diet-footer d-flex justify-content-between align-items-center mt-3 pt-3 border-top"
+                >
+                  <div class="calories-info">
+                    <i class="bi bi-fire text-danger"></i>
+                    <span class="fw-bold ms-1">{{ diet.totalCalories }}</span> kcal
+                  </div>
+                  <button
+                    class="btn btn-primary rounded-pill px-4"
+                    [routerLink]="['/nutrition/diets', diet.id]"
+                  >
+                    Ver Dieta
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    } @else if (!error()) {
+      <div class="text-center py-5 empty-state">
+        <i class="bi bi-inbox display-1 text-muted mb-3"></i>
+        <h3 class="text-muted">No hay dietas disponibles</h3>
+        <p>Actualmente no hay dietas que mostrar o que coincidan con tu búsqueda.</p>
+      </div>
+    }
+  </div>
+</div>
