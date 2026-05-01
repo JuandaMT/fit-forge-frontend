@@ -21,9 +21,9 @@ export class DietCatalog implements OnInit {
   error = signal<string | null>(null);
 
   searchTerm = signal<string>('');
-  selectedCategory = signal<string>('Todo');
+  selectedCategory = signal<string>('Todas');
 
-  categories = ['Todo', 'Ganar Masa', 'Perder Peso', 'Mantenimiento', 'Keto', 'Vegana'];
+  categories = ['Todas', 'Pérdida de peso', 'Ganancia muscular', 'Mantenimiento', 'Resistencia'];
 
   // Computed signal for filtered diets
   filteredDiets = computed(() => {
@@ -40,7 +40,7 @@ export class DietCatalog implements OnInit {
     }
 
     const cat = this.selectedCategory();
-    if (cat !== 'Todo') {
+    if (cat !== 'Todas') {
       result = result.filter((d) => d.category === cat);
     }
 

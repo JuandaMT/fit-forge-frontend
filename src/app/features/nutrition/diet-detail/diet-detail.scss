@@ -1,0 +1,345 @@
+.diet-detail-container {
+  min-height: 100vh;
+  background-color: var(--color-background, #121212);
+  color: #fff;
+  padding-bottom: 4rem;
+}
+
+.text-muted-light {
+  color: #a0a0a0;
+}
+.text-primary-green {
+  color: #4ade80;
+}
+.text-indigo {
+  color: #818cf8;
+}
+.text-indigo-light {
+  color: #a5b4fc;
+}
+.tracking-wider {
+  letter-spacing: 0.06em;
+}
+
+// Back button
+.back-btn {
+  background: transparent;
+  border: none;
+  color: #a0a0a0;
+  font-size: 0.9rem;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+// Hero card
+.hero-card {
+  background-color: #1e1e1e;
+  border: 1px solid #2c2c2c;
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+// Badge pills
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.9rem;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+.badge-category {
+  background-color: rgba(74, 222, 128, 0.08);
+  border-color: rgba(74, 222, 128, 0.3);
+  color: #4ade80;
+}
+
+.badge-meals {
+  background-color: rgba(160, 160, 160, 0.08);
+  border-color: rgba(160, 160, 160, 0.25);
+  color: #a0a0a0;
+}
+
+.badge-assigned {
+  background-color: rgba(74, 222, 128, 0.08);
+  border-color: rgba(74, 222, 128, 0.3);
+  color: #4ade80;
+}
+
+.badge-assigned-lg {
+  @extend .badge-assigned;
+  font-size: 0.85rem;
+  padding: 0.5rem 1.2rem;
+}
+
+.diet-main-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.diet-main-desc {
+  color: #a0a0a0;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+// Stats row
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+.stat-item {
+  .stat-value {
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    color: #a0a0a0;
+  }
+}
+
+.btn-change-diet {
+  background: transparent;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 0.55rem 1.4rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+
+  &:hover {
+    background: #2c2c2c;
+    border-color: #666;
+  }
+}
+
+// Day selector
+.day-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.day-btn {
+  background: #1e1e1e;
+  border: 1px solid #2c2c2c;
+  color: #a0a0a0;
+  padding: 0.45rem 1.1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #2c2c2c;
+    color: #fff;
+  }
+
+  &.active {
+    background: #1e1e1e;
+    border-color: #fff;
+    color: #fff;
+    font-weight: 700;
+  }
+}
+
+// Meal section
+.meal-section {
+  background: #1e1e1e;
+  border: 1px solid #2c2c2c;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.meal-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #2c2c2c;
+}
+
+.meal-section-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  margin-right: 0.75rem;
+}
+
+.meal-section-time {
+  font-size: 0.8rem;
+}
+
+.meal-section-calories {
+  font-size: 1rem;
+}
+
+// Food table
+.food-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #666;
+    padding: 0.65rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid #2c2c2c;
+  }
+
+  td {
+    padding: 0.8rem 1.25rem;
+    font-size: 0.85rem;
+    color: #d0d0d0;
+    vertical-align: middle;
+    border-bottom: 1px solid #252525;
+
+    &:first-child {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #fff;
+    }
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.food-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  &.dot-green {
+    background-color: #4ade80;
+  }
+  &.dot-yellow {
+    background-color: #f59e0b;
+  }
+  &.dot-orange {
+    background-color: #f97316;
+  }
+}
+
+.ver-link {
+  color: #4ade80;
+  text-decoration: none;
+  font-size: 0.8rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// Sidebar
+.sidebar-card {
+  background-color: #1e1e1e;
+  border: 1px solid #2c2c2c;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.sidebar-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.macro-row-sm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.8rem;
+
+  .text-muted-light {
+    width: 70px;
+    flex-shrink: 0;
+  }
+}
+
+.micro-bar {
+  flex: 1;
+  height: 6px;
+  border-radius: 10px;
+
+  &.fill-protein {
+    background-color: #4ade80;
+    width: 75%;
+  }
+  &.fill-carbs {
+    background-color: #f59e0b;
+    width: 60%;
+  }
+  &.fill-fat {
+    background-color: #ef4444;
+    width: 50%;
+  }
+  &.fill-fiber {
+    background-color: #60a5fa;
+    width: 40%;
+  }
+}
+
+.valuation-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #252525;
+  font-size: 0.85rem;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.star-row {
+  display: flex;
+  gap: 2px;
+  font-size: 0.75rem;
+}
+
+.ai-card {
+  background-color: rgba(99, 102, 241, 0.05);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+.total-calories-display {
+  display: flex;
+  align-items: baseline;
+}

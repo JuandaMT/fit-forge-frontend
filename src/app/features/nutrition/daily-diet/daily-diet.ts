@@ -47,4 +47,36 @@ export class DailyDiet implements OnInit {
     if (!data || !data.meals) return 0;
     return data.meals.filter((m) => m.completed).length;
   }
+
+  addFood(): void {
+    const foodName = window.prompt('Introduce el nombre del alimento:');
+    if (foodName && this.progress()) {
+      const current = this.progress()!;
+      // Simple mock: add to the first meal
+      if (current.meals && current.meals.length > 0) {
+        if (!current.meals[0].ingredients) {
+          current.meals[0].ingredients = [];
+        }
+        current.meals[0].ingredients.push({
+          id: Math.random(),
+          name: foodName,
+          amount: '100g',
+          calories: 150,
+        });
+        current.consumedCalories += 150;
+        this.progress.set({ ...current });
+      }
+    }
+  }
+
+  completeDay(): void {
+    if (window.confirm('¿Estás seguro de que quieres cerrar el día?')) {
+      if (this.progress()) {
+        const current = this.progress()!;
+        current.meals.forEach((m) => (m.completed = true));
+        this.progress.set({ ...current });
+        alert('¡Día completado con éxito! Has alcanzado tus objetivos.');
+      }
+    }
+  }
 }
