@@ -1,0 +1,167 @@
+.daily-diet-container {
+  min-height: 100vh;
+  background-color: var(--color-background, #121212);
+  color: #fff;
+  padding-bottom: 4rem;
+}
+
+.text-muted-light {
+  color: #a0a0a0;
+}
+
+.tracking-wider {
+  letter-spacing: 0.05em;
+}
+
+.font-sm {
+  font-size: 0.8rem;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #2c2c2c;
+}
+
+/* Calories Circle */
+.calories-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 8px solid #333;
+  border-top-color: #4ade80; /* green progress */
+  border-right-color: #4ade80;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .cal-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .cal-label {
+    font-size: 0.8rem;
+    color: #a0a0a0;
+    font-weight: 600;
+  }
+}
+
+.text-success {
+  color: #4ade80 !important;
+}
+.text-danger {
+  color: #ef4444 !important;
+}
+
+/* Macros */
+.macro-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 100px;
+  align-items: center;
+  gap: 1rem;
+}
+
+.macro-name {
+  font-size: 0.85rem;
+  color: #d0d0d0;
+}
+
+.macro-bar-container {
+  height: 8px;
+  background-color: #333;
+  border-radius: 10px;
+  overflow: hidden;
+
+  .macro-bar {
+    height: 100%;
+    border-radius: 10px;
+
+    &.fill-protein {
+      background-color: #4ade80;
+    }
+    &.fill-carbs {
+      background-color: #f59e0b;
+    }
+    &.fill-fat {
+      background-color: #ef4444;
+    }
+  }
+}
+
+.macro-stats {
+  font-size: 0.85rem;
+}
+
+/* Meals List */
+.meal-card {
+  transition: all 0.3s ease;
+
+  &.meal-pending {
+    opacity: 0.7;
+    background-color: #1a1a1a;
+  }
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.meal-icon {
+  width: 40px;
+  height: 40px;
+  background-color: #2c2c2c;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  color: #f59e0b; /* orange */
+}
+
+.bg-success-soft {
+  background-color: rgba(74, 222, 128, 0.1) !important;
+}
+
+.ingredient-row {
+  .food-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #4ade80;
+  }
+
+  &:last-child {
+    border-bottom: none !important;
+  }
+}
+
+/* Buttons */
+.btn-outline-light {
+  border-color: #444;
+  color: #fff;
+
+  &:hover {
+    background-color: #333;
+    border-color: #555;
+  }
+}
+
+/* AI Suggestion */
+.ai-suggestion-card {
+  background-color: rgba(99, 102, 241, 0.05);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+
+  .text-primary-light {
+    color: #818cf8;
+  }
+
+  .border-primary {
+    border-color: #6366f1 !important;
+  }
+}

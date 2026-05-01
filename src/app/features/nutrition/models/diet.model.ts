@@ -6,4 +6,8 @@ export interface Diet {
   tags: string[];
   totalCalories: number;
   category?: string;
+  protein?: number;
+  carbs?: number;
+  fat?: number;
+  mealsList?: string[];
 }

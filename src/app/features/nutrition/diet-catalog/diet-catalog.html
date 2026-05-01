@@ -1,32 +1,15 @@
 <div class="diet-catalog-container py-4">
   <div class="container">
-    <header class="catalog-header text-center mb-5">
-      <h1 class="display-5 fw-bold text-gradient">Descubre Tu Plan Nutricional Ideal</h1>
-      <p class="text-muted lead">
-        Explora nuestras dietas diseñadas por expertos para ayudarte a alcanzar tus objetivos.
-      </p>
+    <header class="catalog-header mb-4">
+      <h1 class="display-6 fw-bold text-white mb-1">Dietas</h1>
+      <p class="text-muted-light">Encuentra el plan nutricional que encaja con tu objetivo</p>
     </header>
 
-    <div class="search-filters-section mb-5">
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="search-box">
-            <i class="bi bi-search search-icon"></i>
-            <input
-              type="text"
-              class="form-control form-control-lg rounded-pill px-5"
-              placeholder="Buscar dieta..."
-              [value]="searchTerm()"
-              (input)="updateSearchTerm($event)"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div class="categories-filter mt-4 text-center">
+    <div class="filters-container mb-4">
+      <div class="d-flex flex-wrap gap-2">
         @for (cat of categories; track cat) {
           <button
-            class="btn rounded-pill px-4 me-2 mb-2 category-btn"
+            class="filter-pill"
             [class.active]="selectedCategory() === cat"
             (click)="selectCategory(cat)"
           >
@@ -37,7 +20,7 @@
     </div>
 
     @if (error()) {
-      <div class="alert alert-danger text-center shadow-sm rounded-4 border-0">
+      <div class="alert alert-danger shadow-sm rounded-3 border-0">
         <i class="bi bi-exclamation-triangle-fill me-2"></i>
         {{ error() }}
       </div>
@@ -53,38 +36,78 @@
       <div class="row g-4">
         @for (diet of filteredDiets(); track diet.id) {
           <div class="col-12 col-md-6 col-lg-4">
-            <div class="card diet-card h-100 border-0 shadow-sm">
-              <div class="card-img-wrapper">
-                <img
-                  [src]="diet.imageUrl || 'assets/images/default-diet.jpg'"
-                  class="card-img-top"
-                  [alt]="diet.title"
-                />
-                <div class="diet-category-badge">{{ diet.category }}</div>
+            <div class="diet-card h-100">
+              <!-- Top tags -->
+              <div class="d-flex gap-2 mb-3">
+                @if (diet.category) {
+                  <span class="diet-badge">{{ diet.category }}</span>
+                }
+                <!-- If assigned -->
+                @if (diet.id === 'current-assigned') {
+                  <span class="diet-badge badge-active"><i class="bi bi-check2"></i> Tu dieta</span>
+                }
               </div>
-              <div class="card-body d-flex flex-column">
-                <h5 class="card-title fw-bold">{{ diet.title }}</h5>
-                <div class="diet-tags mb-3">
-                  @for (tag of diet.tags; track tag) {
-                    <span class="badge rounded-pill bg-light text-dark border me-1">{{ tag }}</span>
-                  }
-                </div>
-                <p class="card-text text-muted flex-grow-1">{{ diet.description }}</p>
 
-                <div
-                  class="diet-footer d-flex justify-content-between align-items-center mt-3 pt-3 border-top"
-                >
-                  <div class="calories-info">
-                    <i class="bi bi-fire text-danger"></i>
-                    <span class="fw-bold ms-1">{{ diet.totalCalories }}</span> kcal
+              <!-- Title & Desc -->
+              <h4 class="diet-title">{{ diet.title }}</h4>
+              <p class="diet-desc">{{ diet.description }}</p>
+
+              <!-- Calories -->
+              <div class="diet-calories mb-4">
+                <span class="cal-number">{{ diet.totalCalories | number }}</span>
+                <span class="cal-text">kcal / día</span>
+              </div>
+
+              <!-- Macros -->
+              <div class="macros-list mb-4">
+                <div class="macro-item">
+                  <span class="macro-label">Proteína</span>
+                  <div class="macro-progress-bar">
+                    <div
+                      class="progress-fill fill-protein"
+                      [style.width.%]="(diet.protein || 0) / 3"
+                    ></div>
                   </div>
-                  <button
-                    class="btn btn-primary rounded-pill px-4"
-                    [routerLink]="['/nutrition/diets', diet.id]"
-                  >
-                    Ver Dieta
-                  </button>
+                  <span class="macro-value">{{ diet.protein || 0 }}g</span>
                 </div>
+                <div class="macro-item">
+                  <span class="macro-label">Carbos</span>
+                  <div class="macro-progress-bar">
+                    <div
+                      class="progress-fill fill-carbs"
+                      [style.width.%]="(diet.carbs || 0) / 4"
+                    ></div>
+                  </div>
+                  <span class="macro-value">{{ diet.carbs || 0 }}g</span>
+                </div>
+                <div class="macro-item">
+                  <span class="macro-label">Grasas</span>
+                  <div class="macro-progress-bar">
+                    <div class="progress-fill fill-fat" [style.width.%]="diet.fat || 0"></div>
+                  </div>
+                  <span class="macro-value">{{ diet.fat || 0 }}g</span>
+                </div>
+              </div>
+
+              <!-- Meals -->
+              <div class="meals-pills mb-4">
+                @for (meal of diet.mealsList || ['Desayuno', 'Almuerzo', 'Cena']; track meal) {
+                  <span class="meal-pill">{{ meal }}</span>
+                }
+              </div>
+
+              <!-- Footer -->
+              <div class="diet-footer mt-auto d-flex justify-content-between align-items-center">
+                <div class="rating">
+                  <i class="bi bi-star-fill text-warning"></i> 4.6
+                  <span class="text-muted-light ms-1">· 284 usuarios</span>
+                </div>
+                <button
+                  class="btn btn-outline-light rounded-pill px-4"
+                  [routerLink]="['/nutrition/diets', diet.id]"
+                >
+                  Ver detalle
+                </button>
               </div>
             </div>
           </div>
@@ -92,9 +115,9 @@
       </div>
     } @else if (!error()) {
       <div class="text-center py-5 empty-state">
-        <i class="bi bi-inbox display-1 text-muted mb-3"></i>
-        <h3 class="text-muted">No hay dietas disponibles</h3>
-        <p>Actualmente no hay dietas que mostrar o que coincidan con tu búsqueda.</p>
+        <i class="bi bi-inbox display-1 text-muted-light mb-3"></i>
+        <h3 class="text-white">No hay dietas disponibles</h3>
+        <p class="text-muted-light">No hemos encontrado planes nutricionales.</p>
       </div>
     }
   </div>
