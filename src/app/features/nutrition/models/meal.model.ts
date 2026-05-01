@@ -2,6 +2,7 @@ export interface Ingredient {
   id?: string | number;
   name: string;
   amount: string; // e.g., '100g', '2 tazas'
+  calories?: number;
 }
 
 export interface Meal {
