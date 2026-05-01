@@ -105,6 +105,7 @@ export class DashboardService {
   private loadRealData() {
     // 1. Cargar datos del usuario
     this.http
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .get<any>(`${this.apiUrl}/users/me`)
       .pipe(
         catchError((err) => {
@@ -174,6 +175,7 @@ export class DashboardService {
 
     // 2. Cargar historial de workouts para sacar total de sesiones
     this.http
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .get<any>(`${this.apiUrl}/workouts?limit=1`)
       .pipe(catchError(() => of(null)))
       .subscribe((res) => {

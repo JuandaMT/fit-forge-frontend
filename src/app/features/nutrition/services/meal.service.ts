@@ -80,6 +80,7 @@ const MOCK_DAILY_PROGRESS: DailyNutritionProgress = {
   providedIn: 'root',
 })
 export class MealService {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getDailyProgress(date?: string): Observable<DailyNutritionProgress> {
     return of(MOCK_DAILY_PROGRESS).pipe(delay(500));
   }

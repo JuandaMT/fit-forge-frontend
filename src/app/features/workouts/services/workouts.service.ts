@@ -697,6 +697,7 @@ export class WorkoutsService {
 
   private loadSessionHistory() {
     this.http
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .get<{ data: any[] }>(`${environment.apiUrl}/workouts`)
       .pipe(
         catchError((err) => {
