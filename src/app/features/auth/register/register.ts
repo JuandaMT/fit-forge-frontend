@@ -45,18 +45,17 @@ export class Register {
     this.loading.set(true);
     this.errorMessage.set('');
 
-    const payload: Record<string, string | number | null> = {
+    const payload = {
       username: this.username,
       email: this.email,
       password: this.password,
       firstName: this.firstName,
       lastName: this.lastName,
       goalType: this.goalType,
+      ...(this.birthdate ? { birthdate: this.birthdate } : {}),
+      ...(this.heightCm ? { heightCm: this.heightCm } : {}),
+      ...(this.currentWeightKg ? { currentWeightKg: this.currentWeightKg } : {}),
     };
-
-    if (this.birthdate) payload['birthdate'] = this.birthdate;
-    if (this.heightCm) payload['heightCm'] = this.heightCm;
-    if (this.currentWeightKg) payload['currentWeightKg'] = this.currentWeightKg;
 
     this.auth.register(payload).subscribe({
       next: () => {
