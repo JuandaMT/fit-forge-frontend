@@ -28,6 +28,7 @@ export class Register {
 
   loading = signal(false);
   errorMessage = signal('');
+  menuOpen = false;
 
   onSubmit(): void {
     if (

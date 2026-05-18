@@ -17,6 +17,7 @@ export class Login {
   password = '';
   loading = signal(false);
   errorMessage = signal('');
+  menuOpen = false;
 
   onSubmit(): void {
     if (!this.email || !this.password) {

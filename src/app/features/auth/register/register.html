@@ -1,8 +1,36 @@
+<header class="auth-nav">
+  <div class="auth-nav-inner">
+    <a routerLink="/" class="auth-brand">FitForge</a>
+
+    <nav class="auth-nav-desktop">
+      <a routerLink="/workouts">Entrenamientos</a>
+      <a routerLink="/nutrition">Dietas</a>
+      <a routerLink="/stats">Estadísticas</a>
+    </nav>
+
+    <div class="auth-actions">
+      <a routerLink="/login" class="auth-btn auth-btn-ghost auth-nav-auth">Iniciar sesión</a>
+      <a routerLink="/register" class="auth-btn auth-btn-solid auth-nav-auth active">
+        Registrarse
+      </a>
+      <button class="auth-menu-toggle" (click)="menuOpen = !menuOpen" aria-label="Abrir menú">
+        ☰
+      </button>
+    </div>
+  </div>
+
+  <nav class="auth-mobile-nav" [class.is-open]="menuOpen">
+    <a routerLink="/workouts" (click)="menuOpen = false">Entrenamientos</a>
+    <a routerLink="/nutrition" (click)="menuOpen = false">Dietas</a>
+    <a routerLink="/stats" (click)="menuOpen = false">Estadísticas</a>
+    <a routerLink="/login" (click)="menuOpen = false">Iniciar sesión</a>
+    <a routerLink="/register" (click)="menuOpen = false">Registrarse</a>
+  </nav>
+</header>
+
 <section class="r-page">
   <aside class="r-info">
     <div class="r-info-inner">
-      <a routerLink="/" class="r-brand">FitForge</a>
-
       <div class="r-copy">
         <h1 class="r-title">Tu progreso,<br />tu historia</h1>
         <p class="r-subtitle">Entrena con datos reales y recibe recomendaciones adaptadas a ti.</p>
@@ -20,13 +48,6 @@
 
   <main class="r-form-side">
     <div class="r-form-wrap">
-      <a routerLink="/" class="r-home">Volver al inicio</a>
-
-      <div class="r-tabs" aria-label="Acceso a FitForge">
-        <a routerLink="/login">Iniciar sesión</a>
-        <a routerLink="/register" class="active" aria-current="page">Crear cuenta</a>
-      </div>
-
       <form class="r-form" (ngSubmit)="onSubmit()">
         @if (errorMessage()) {
           <div

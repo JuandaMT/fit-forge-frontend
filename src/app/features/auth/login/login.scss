@@ -1,6 +1,97 @@
+.auth-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(17, 17, 17, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.auth-nav-inner {
+  width: 100%;
+  max-width: 1100px;
+  min-height: 72px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.auth-brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.65rem;
+  color: var(--color-primary);
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+
+.auth-nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 0.9rem;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+.auth-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.auth-btn {
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.88rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+
+  &:hover,
+  &.active {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+  }
+}
+
+.auth-btn-solid {
+  background: #222;
+}
+
+.auth-menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.4rem;
+  color: #fff;
+  font-size: 1.3rem;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+  line-height: 1;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+}
+
+.auth-mobile-nav {
+  display: none;
+}
+
 .l-page {
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 72px);
   display: grid;
   grid-template-columns: 1fr 1fr;
   background: var(--color-surface-2);
@@ -10,16 +101,16 @@
   background: var(--color-primary-dark);
   color: #fff;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 4rem 2rem;
 }
 
 .l-info-inner {
   width: min(100%, 520px);
-  min-height: 78vh;
   display: flex;
   flex-direction: column;
+  padding-top: clamp(7rem, 14vh, 10rem);
 }
 
 .l-brand {
@@ -32,11 +123,13 @@
 }
 
 .l-copy {
-  margin-top: 5rem;
+  margin-top: 0;
 }
 
 .l-title {
   color: #fff;
+  font-size: clamp(2.4rem, 4.4vw, 3.4rem);
+  line-height: 1.1;
   margin: 0;
   max-width: 430px;
 }
@@ -90,44 +183,6 @@
 
   &:hover {
     text-decoration: underline;
-  }
-}
-
-.l-tabs {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.35rem;
-  padding: 0.35rem;
-  background: rgba(17, 17, 17, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius-md);
-  margin-bottom: 2.5rem;
-
-  a {
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid transparent;
-    color: var(--color-text-muted);
-    font-weight: 600;
-    font-size: 0.92rem;
-    text-decoration: none;
-    border-radius: var(--radius-sm);
-    transition:
-      background-color 0.2s,
-      color 0.2s;
-
-    &:hover {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    &.active {
-      background: rgba(29, 158, 117, 0.16);
-      border-color: rgba(29, 158, 117, 0.38);
-      color: var(--color-primary);
-    }
   }
 }
 
@@ -241,6 +296,39 @@
 }
 
 @media (max-width: 900px) {
+  .auth-menu-toggle {
+    display: block;
+  }
+
+  .auth-nav-desktop,
+  .auth-nav-auth {
+    display: none;
+  }
+
+  .auth-mobile-nav {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(17, 17, 17, 0.96);
+
+    &.is-open {
+      display: flex;
+    }
+
+    a {
+      color: rgba(255, 255, 255, 0.5);
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 0.5rem 0;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
   .l-page {
     grid-template-columns: 1fr;
   }
@@ -250,7 +338,7 @@
   }
 
   .l-info-inner {
-    min-height: auto;
+    padding-top: 0;
   }
 
   .l-copy {
@@ -267,6 +355,20 @@
 }
 
 @media (max-width: 520px) {
+  .auth-nav-inner {
+    padding: 1.1rem 1.5rem;
+  }
+
+  .auth-brand {
+    font-size: 1.9rem;
+  }
+
+  .auth-menu-toggle {
+    font-size: 1.5rem;
+    padding: 0.45rem 0.65rem;
+    border-radius: 0.6rem;
+  }
+
   .l-info,
   .l-form-side {
     padding-inline: 1rem;
@@ -278,15 +380,6 @@
 
   .l-subtitle {
     font-size: 1rem;
-  }
-
-  .l-tabs {
-    margin-bottom: 2.4rem;
-
-    a {
-      min-height: 46px;
-      font-size: 0.9rem;
-    }
   }
 
   .l-field input,

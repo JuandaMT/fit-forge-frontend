@@ -1,8 +1,36 @@
+<header class="auth-nav">
+  <div class="auth-nav-inner">
+    <a routerLink="/" class="auth-brand">FitForge</a>
+
+    <nav class="auth-nav-desktop">
+      <a routerLink="/workouts">Entrenamientos</a>
+      <a routerLink="/nutrition">Dietas</a>
+      <a routerLink="/stats">Estadísticas</a>
+    </nav>
+
+    <div class="auth-actions">
+      <a routerLink="/login" class="auth-btn auth-btn-ghost auth-nav-auth active">
+        Iniciar sesión
+      </a>
+      <a routerLink="/register" class="auth-btn auth-btn-solid auth-nav-auth">Registrarse</a>
+      <button class="auth-menu-toggle" (click)="menuOpen = !menuOpen" aria-label="Abrir menú">
+        ☰
+      </button>
+    </div>
+  </div>
+
+  <nav class="auth-mobile-nav" [class.is-open]="menuOpen">
+    <a routerLink="/workouts" (click)="menuOpen = false">Entrenamientos</a>
+    <a routerLink="/nutrition" (click)="menuOpen = false">Dietas</a>
+    <a routerLink="/stats" (click)="menuOpen = false">Estadísticas</a>
+    <a routerLink="/login" (click)="menuOpen = false">Iniciar sesión</a>
+    <a routerLink="/register" (click)="menuOpen = false">Registrarse</a>
+  </nav>
+</header>
+
 <section class="l-page">
   <aside class="l-info">
     <div class="l-info-inner">
-      <a routerLink="/" class="l-brand">FitForge</a>
-
       <div class="l-copy">
         <h1 class="l-title">Tu progreso,<br />tu historia</h1>
         <p class="l-subtitle">Accede a tus rutinas, tus métricas y tu seguimiento diario.</p>
@@ -20,13 +48,6 @@
 
   <main class="l-form-side">
     <div class="l-form-wrap">
-      <a routerLink="/" class="l-home">Volver al inicio</a>
-
-      <div class="l-tabs" aria-label="Acceso a FitForge">
-        <a routerLink="/login" class="active" aria-current="page">Iniciar sesión</a>
-        <a routerLink="/register">Crear cuenta</a>
-      </div>
-
       @if (errorMessage()) {
         <div class="l-error">{{ errorMessage() }}</div>
       }
