@@ -83,7 +83,7 @@ export class StatsService {
     ].sort((a, b) => new Date(b).getTime() - new Date(a).getTime());
 
     let streak = 0;
-    let checkDate = new Date();
+    const checkDate = new Date();
 
     const todayStr = `${checkDate.getFullYear()}-${String(checkDate.getMonth() + 1).padStart(2, '0')}-${String(checkDate.getDate()).padStart(2, '0')}`;
     checkDate.setDate(checkDate.getDate() - 1);
@@ -133,7 +133,7 @@ export class StatsService {
     this.loadAllWorkoutHistory(1);
   }
 
-  private loadAllWeightHistory(page: number = 1): void {
+  private loadAllWeightHistory(page = 1): void {
     this.http
       .get<WeightHistoryResponse>(`${environment.apiUrl}/users/me/weight?page=${page}&limit=50`)
       .subscribe({
@@ -154,7 +154,7 @@ export class StatsService {
       });
   }
 
-  private loadAllWorkoutHistory(page: number = 1): void {
+  private loadAllWorkoutHistory(page = 1): void {
     this.http
       .get<WorkoutHistoryResponse>(`${environment.apiUrl}/workouts?page=${page}&limit=50`)
       .subscribe({

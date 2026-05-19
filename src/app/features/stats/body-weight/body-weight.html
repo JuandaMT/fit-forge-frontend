@@ -120,8 +120,9 @@
         <ff-section-card title="Nuevo pesaje" class="mb-4">
           <form (ngSubmit)="submitWeight()" #weightForm="ngForm" class="weight-form">
             <div class="form-group mb-3">
-              <label class="form-label">Peso (kg)</label>
+              <label class="form-label" for="weight-input">Peso (kg)</label>
               <input
+                id="weight-input"
                 type="number"
                 class="c-input"
                 [(ngModel)]="newWeight"
@@ -134,12 +135,20 @@
               />
             </div>
             <div class="form-group mb-3">
-              <label class="form-label">Fecha</label>
-              <input type="date" class="c-input" [(ngModel)]="newDate" name="date" required />
+              <label class="form-label" for="date-input">Fecha</label>
+              <input
+                type="date"
+                id="date-input"
+                class="c-input"
+                [(ngModel)]="newDate"
+                name="date"
+                required
+              />
             </div>
             <div class="form-group mb-4">
-              <label class="form-label">Notas (Opcional)</label>
+              <label class="form-label" for="notes-input">Notas (Opcional)</label>
               <textarea
+                id="notes-input"
                 class="c-input"
                 [(ngModel)]="newNotes"
                 name="notes"
