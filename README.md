@@ -1,59 +1,65 @@
-# Fitforge
+# FitForge
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+Aplicación web fullstack de fitness y nutrición desarrollada con **Angular 17** y **Symfony 7**. Incluye seguimiento de rutinas de entrenamiento, planes de dieta, estadísticas de progreso y un sistema de valoraciones y recomendaciones personalizadas.
 
-## Development server
+## Stack tecnológico
 
-To start a local development server, run:
+- **Frontend:** Angular 17 (standalone components, signals, lazy loading)
+- **Backend:** Symfony 7 (API REST)
+- **Estilos:** Bootstrap 5 + SCSS
+- **Testing:** Vitest
+
+## Funcionalidades principales
+
+- Dashboard con resumen de actividad diaria
+- Gestión de rutinas de entrenamiento y catálogo de ejercicios
+- Registro de sesiones activas y resumen post-entrenamiento
+- Planes de dieta y buscador de alimentos con valores nutricionales
+- Comparativa nutricional entre alimentos
+- Seguimiento de progreso y estadísticas
+- Sistema de valoraciones (★) y recomendaciones personalizadas
+- Perfil de usuario
+
+## Estructura del proyecto
+
+```
+src/app/
+├── core/          # Guards, interceptors, servicios globales
+├── features/      # Módulos de funcionalidad
+│   ├── auth/          # Login, registro, recuperación de contraseña
+│   ├── dashboard/     # Pantalla principal
+│   ├── workouts/      # Rutinas, ejercicios, sesiones, progreso
+│   ├── nutrition/     # Dietas, alimentos, resumen diario
+│   ├── stats/         # Estadísticas y gráficas
+│   └── profile/       # Perfil de usuario
+├── layout/        # Layouts (main, public)
+└── shared/        # Componentes y utilidades reutilizables
+```
+
+## Instalación y uso
 
 ```bash
+# Instalar dependencias
+npm install
+
+# Servidor de desarrollo
 ng serve
-```
+# → http://localhost:4200
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
+# Build de producción
 ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
+# Tests
 ng test
 ```
 
-## Running end-to-end tests
+## Vistas (30 vistas planificadas)
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+| Módulo | Vistas |
+|--------|--------|
+| Auth | Login, Registro, Recuperar contraseña |
+| Dashboard | Resumen diario |
+| Entrenamientos | Catálogo de rutinas, Detalle de rutina, Catálogo de ejercicios, Detalle de ejercicio, Nueva sesión, Detalle de sesión, Resumen de sesión, Historial, Progreso |
+| Nutrición | Dieta diaria, Catálogo de dietas, Detalle de dieta, Buscador de alimentos, Detalle de alimento, Resumen diario, Comparativa nutricional |
+| Estadísticas | Estadísticas generales |
+| Perfil | Perfil de usuario |
